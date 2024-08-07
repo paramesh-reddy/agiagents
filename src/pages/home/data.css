@@ -1,6 +1,6 @@
 .container-data{
     /* margin-top:60px; */
-    text-align: center;
+    text-align: start;
     background-color: rgb(235, 248, 235);
     
 
@@ -60,6 +60,7 @@
     padding: 20px;
     background-color: #f9f9f9;
     border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
     box-sizing: border-box;
 }
 
