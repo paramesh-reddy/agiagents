@@ -1,0 +1,22 @@
+.fa-search {
+  margin-left: -80px;
+}
+.inner-container {
+  margin: 20px;
+
+}
+.layout{
+  display:flex;
+  justify-content:space-around;
+}
+.icons{
+  
+    width: 100%;
+    margin-left:px;
+    margin-right:-800px;
+  
+  
+}
+.link i{
+     margin:20px;  
+}
