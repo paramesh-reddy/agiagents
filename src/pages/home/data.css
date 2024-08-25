@@ -1,29 +1,3 @@
-.container-data{
-    /* margin-top:60px; */
-    text-align: start;
-    background-color: rgb(235, 248, 235);
-    
-
-}
-.Explore{
- font-size:50px;
- padding:20px;
-}
-.List{
-    
-    font-size:20px ;
-
-}
-.input{
-    width:600px;
-    height:50px;
-    border-radius: 40px;
-    padding:10px;
-    margin-top:40px;
-
-}
-
-
 .container-data {
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -53,14 +27,14 @@
 
 .filter-container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .filter-section {
-    width: 25%;
+    width: 100%;
     padding: 20px;
     background-color: #f9f9f9;
-    border-right: 1px solid #ddd;
-    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     box-sizing: border-box;
 }
 
@@ -90,13 +64,14 @@
 }
 
 .agents-section {
-    width: 75%;
+    width: 100%;
     padding: 20px;
     box-sizing: border-box;
 }
 
 .agents-header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -104,6 +79,7 @@
 
 .view-switch {
     display: flex;
+    margin-bottom: 10px;
 }
 
 .view-button {
@@ -131,7 +107,7 @@
 
 .agents-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
 }
 
@@ -201,4 +177,75 @@
 .tag.likes {
     background-color: #fff5e7;
     color: #ffc107;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: column;
+    }
+
+    .filter-section {
+        width: 100%;
+        border-right: none;
+    }
+
+    .agents-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .view-switch {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .agents-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .explore {
+        font-size: 1.5em;
+    }
+
+    .list {
+        font-size: 1em;
+    }
+
+    .input {
+        width: 100%;
+        font-size: 0.9em;
+    }
+
+    .view-button {
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+
+    .sort-select {
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+
+    .agent-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .agent-image {
+        width: 40px;
+        height: 40px;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .agent-info {
+        width: 100%;
+    }
+
+    .tag {
+        font-size: 0.7em;
+    }
 }
