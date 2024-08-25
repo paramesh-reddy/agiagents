@@ -1,3 +1,4 @@
+/* Desktop Styles (Unchanged) */
 .container-data {
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -27,14 +28,14 @@
 
 .filter-container {
     display: flex;
-    flex-wrap: wrap;
 }
 
 .filter-section {
-    width: 100%;
+    width: 25%;
     padding: 20px;
     background-color: #f9f9f9;
-    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
     box-sizing: border-box;
 }
 
@@ -64,14 +65,13 @@
 }
 
 .agents-section {
-    width: 100%;
+    width: 75%;
     padding: 20px;
     box-sizing: border-box;
 }
 
 .agents-header {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -79,7 +79,6 @@
 
 .view-switch {
     display: flex;
-    margin-bottom: 10px;
 }
 
 .view-button {
@@ -107,7 +106,7 @@
 
 .agents-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
@@ -179,73 +178,64 @@
     color: #ffc107;
 }
 
-/* Mobile responsive styles */
-@media (max-width: 768px) {
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
     .filter-container {
         flex-direction: column;
     }
 
     .filter-section {
         width: 100%;
+        margin-bottom: 20px;
         border-right: none;
+        border-bottom: 1px solid #ddd;
     }
 
-    .agents-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .view-switch {
+    .agents-section {
         width: 100%;
-        justify-content: flex-start;
     }
 
     .agents-list {
         grid-template-columns: 1fr;
     }
-}
 
-@media (max-width: 480px) {
+    .agent-card {
+        flex-direction: row; /* Keep image and text side by side */
+        align-items: center;
+    }
+
+    .agent-image {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+        margin-bottom: 0; /* Remove bottom margin */
+    }
+
+    .agent-info {
+        width: calc(100% - 70px);
+    }
+
     .explore {
         font-size: 1.5em;
+        text-align: center;
     }
 
     .list {
         font-size: 1em;
+        text-align: center;
     }
 
     .input {
         width: 100%;
-        font-size: 0.9em;
     }
 
-    .view-button {
-        font-size: 0.8em;
-        padding: 4px 8px;
-    }
-
-    .sort-select {
-        font-size: 0.8em;
-        padding: 4px 8px;
-    }
-
-    .agent-card {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .agent-image {
-        width: 40px;
-        height: 40px;
-        margin-right: 0;
+    .view-switch, .sort-dropdown {
+        justify-content: center;
+        width: 100%;
         margin-bottom: 10px;
     }
 
-    .agent-info {
-        width: 100%;
-    }
-
-    .tag {
-        font-size: 0.7em;
+    .view-button {
+        flex: 1;
     }
 }
