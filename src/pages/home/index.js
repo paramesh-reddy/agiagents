@@ -2,25 +2,32 @@ import React from 'react';
 import './data.css';
 import img1 from '../../Assets/icon1.png'
 import img2 from '../../Assets/icon2.png'
-import img3 from '../../Assets/icon1.jpg'
+import img3 from '../../Assets/icon3.png'
+import img4 from '../../Assets/icon7.png'
+import img5 from '../../Assets/icon3.png'
+import img6 from '../../Assets/icon6.png'
+ import img7 from '../../Assets/icon2.png'
+import img8 from '../../Assets/icon8.png'
+import img9 from '../../Assets/icon9.png'
+
 export default function Home() {
     const data = [
         { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
+        { name: "helperbot. ", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
         { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
-        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 }
+        { name: " Pixella ", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img4 },
+        { name: "Alivah", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img4 },
+        { name: "Dify  in", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
+        { name: "Riki", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img3 },
+        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img8 },
+        { name: "Dify", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img1 },
+        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img3 },
+        { name: "Twitter Personality Agent", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img9 },
+        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img1 },
+        { name: "Devyan", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img7},
+        { name: "Dagent", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 },
+        { name: "Phonely AI", desc: "Automated AI receptionnist for business", premium: "Free", category: "Coding", likes: '6', img: img6 },
+        { name: "HAystack AI", desc: "Automated AI receptionnist for business", premium: "Premium", category: "Coding", likes: '5', img: img2 }
     ]
     return (
         <div className="container-data">
