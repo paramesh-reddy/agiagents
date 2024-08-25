@@ -36,7 +36,7 @@ export default function Home() {
                 <p className="list">Curated list of 100+ AI Agents and Frameworks</p>
 
                 <input placeholder='Search for AI Agent here...' className="input mb-5" style={{ width: '40%' }} />
-
+    
             </div>
             <div className="filter-container">
                 <div className="filter-section">
