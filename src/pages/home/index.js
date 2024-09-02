@@ -14,82 +14,166 @@ import PrepLoader from '../../components/prep-loader/loader';
 
 export default function Home() {
     const [agents, setAgents] = useState([]);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    const [search, setSearch] = useState('');
+    const [accessoryModel, setAccessoryModel] = useState('');
+    const [category, setCategory] = useState('');
+    const [industry, setIndustry] = useState('');
+    const [sort, setSort] = useState('');
+
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedIndustries, setSelectedIndustries] = useState([]);
+    const [categorySearch, setCategorySearch] = useState('');
+    const [industrySearch, setIndustrySearch] = useState('');
+
+    const categoriesList = ["Personal Assistant", "Coding", "Digital Workers", "Productivity", "AI Agents Builder", "Research", "Content Creation"];
+    const industriesList = ["Technology", "Healthcare", "Productivity", "AI Agents Builder", "Research", "Content Creation"];
+
+    // Handle change functions for the filters
+    const handleSearchChange = (e) => setSearch(e.target.value);
+    const handleAccessoryModelChange = (e) => setAccessoryModel(e.target.value);
+    const handleCategoryChange = (e) => setCategory(e.target.value);
+    const handleIndustryChange = (e) => setIndustry(e.target.value);
+    const handleSortChange = (e) => setSort(e.target.value);
+
+    const handleCategorySearchChange = (e) => setCategorySearch(e.target.value);
+    const handleIndustrySearchChange = (e) => setIndustrySearch(e.target.value);
+
+    const handleCategoryCheckboxChange = (category) => {
+        const updatedCategories = selectedCategories.includes(category)
+            ? selectedCategories.filter((item) => item !== category)
+            : [...selectedCategories, category];
+        setSelectedCategories(updatedCategories);
+    };
+
+    const handleIndustryCheckboxChange = (industry) => {
+        const updatedIndustries = selectedIndustries.includes(industry)
+            ? selectedIndustries.filter((item) => item !== industry)
+            : [...selectedIndustries, industry];
+        setSelectedIndustries(updatedIndustries);
+    };
+
     useEffect(() => {
-        // Fetch the data from the API
-        setLoading(true)
-        fetch('http://18.143.174.1/api/agent_list')
-            .then(response => response.json())
-            .then(data => {
-                // Map API response to include image paths
-                const updatedData = data.agents.map(agent => {
-                    // Set the image based on the index or some logic
-                    const images = [img1, img6, img2, img8, img5, img6, img7, img8, img9];
-                    return {
-                        id: agent[0],
-                        name: agent[1],
-                        description: agent[2],
-                        category: agent[3].replace(/"/g, ''),
-                        industry: agent[4].replace(/"/g, ''),
-                        pricing_model: agent[5].replace(/"/g, ''),
-                        api_type: agent[6].replace(/"/g, ''),
-                        date: agent[7],
-                        url: agent[8],
-                        tagline: agent[9].replace(/"/g, ''),
-                        duration: agent[10],
-                        overview: agent[11],
-                        features: agent[12],
-                        use_cases: agent[13],
-                        author: agent[14],
-                        visibility: agent[15],
-                        tags: agent[16],
-                        preview_image: agent[17].replace(/"/g, ''),
-                        demo_video: agent[18].replace(/"/g, ''),
-                        img: images[agent[0] % images.length] // Use modulo to cycle through the images
-                    };
-                });
-                setLoading(false)
+        setLoading(true);
+
+        const fetchAgents = async () => {
+            try {
+                const queryParams = [];
+
+                if (search) queryParams.push(`search=${encodeURIComponent(search)}`);
+                if (accessoryModel) queryParams.push(`accessory_model=${encodeURIComponent(accessoryModel)}`);
+                if (selectedCategories.length) queryParams.push(`category=${encodeURIComponent(selectedCategories.join(','))}`);
+                if (selectedIndustries.length) queryParams.push(`industry=${encodeURIComponent(selectedIndustries.join(','))}`);
+                if (sort) queryParams.push(`sort=${encodeURIComponent(sort)}`);
+
+                const queryString = queryParams.length ? `?${queryParams.join('&')}` : '';
+
+                const response = await fetch(`http://18.143.174.1/api/agent_list${queryString}`);
+                const data = await response.json();
+
+                const images = [img1, img6, img2, img8, img5, img6, img7, img8, img9];
+                const updatedData = data.agents.map(agent => ({
+                    id: agent[0],
+                    name: agent[1],
+                    description: agent[2],
+                    category: agent[3].replace(/"/g, ''),
+                    industry: agent[4].replace(/"/g, ''),
+                    pricing_model: agent[5].replace(/"/g, ''),
+                    api_type: agent[6].replace(/"/g, ''),
+                    date: agent[7],
+                    url: agent[8],
+                    tagline: agent[9].replace(/"/g, ''),
+                    duration: agent[10],
+                    overview: agent[11],
+                    features: agent[12],
+                    use_cases: agent[13],
+                    author: agent[14],
+                    visibility: agent[15],
+                    tags: agent[16],
+                    preview_image: agent[17].replace(/"/g, ''),
+                    demo_video: agent[18].replace(/"/g, ''),
+                    img: images[agent[0] % images.length]
+                }));
+
+                setLoading(false);
                 setAgents(updatedData);
-            })
-            .catch(error => setLoading(false)
-            );
-    }, []);
+            } catch (error) {
+                setLoading(false);
+                console.error('Error fetching agents:', error);
+            }
+        };
+
+        fetchAgents();
+    }, [search, accessoryModel, selectedCategories, selectedIndustries, sort]);
+
+    const filteredCategories = categoriesList.filter(category => 
+        category.toLowerCase().includes(categorySearch.toLowerCase())
+    );
+
+    const filteredIndustries = industriesList.filter(industry => 
+        industry.toLowerCase().includes(industrySearch.toLowerCase())
+    );
 
     return (
         <div className="container-data">
             <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
                 <h1 className="explore">Explore the World of AI Agents</h1>
                 <p className="list">Curated list of 100+ AI Agents and Frameworks</p>
-                <input placeholder='Search for AI Agent here...' className="input mb-5" style={{ width: '40%' }} />
+                <input
+                    placeholder='Search for AI Agent here...'
+                    className="input mb-5"
+                    style={{ width: '40%' }}
+                    value={search}
+                    onChange={handleSearchChange}
+                />
             </div>
             <div className="filter-container">
                 <div className="filter-section">
                     <h3>Refine Search</h3>
                     <div className="categories">
                         <h4>Categories</h4>
-                        <input type="text" placeholder="Search categories" className="filter-search" />
+                        <input
+                            type="text"
+                            placeholder="Search categories"
+                            className="filter-search"
+                            value={categorySearch}
+                            onChange={handleCategorySearchChange}
+                        />
                         <div className="checkbox-group" style={{ height: '200px', overflow: 'auto' }}>
-                            <label><input type="checkbox" /> Personal Assistant (8)</label>
-                            <label><input type="checkbox" /> Coding (22)</label>
-                            <label><input type="checkbox" /> Digital Workers (2)</label>
-                            <label><input type="checkbox" /> Productivity (10)</label>
-                            <label><input type="checkbox" /> AI Agents Builder (43)</label>
-                            <label><input type="checkbox" /> Research (2)</label>
-                            <label><input type="checkbox" /> Content Creation (3)</label>
+                            {filteredCategories.map((category, index) => (
+                                <label key={index} style={{display:'flex',gap:'4px'}}>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedCategories.includes(category)}
+                                        onChange={() => handleCategoryCheckboxChange(category)}
+                                    /> 
+                                    {category} ({Math.floor(Math.random() * 50) + 1})
+                                </label>
+                            ))}
                         </div>
                     </div>
                     <div className="industries">
                         <h4>Industries</h4>
-                        <input type="text" placeholder="Search industries" className="filter-search" />
+                        <input
+                            type="text"
+                            placeholder="Search industries"
+                            className="filter-search"
+                            value={industrySearch}
+                            onChange={handleIndustrySearchChange}
+                        />
                         <div className="checkbox-group" style={{ height: '200px', overflow: 'auto' }}>
-                            <label><input type="checkbox" /> Technology (93)</label>
-                            <label><input type="checkbox" /> Healthcare (1)</label>
-                            <label><input type="checkbox" /> Productivity (10)</label>
-                            <label><input type="checkbox" /> AI Agents Builder (43)</label>
-                            <label><input type="checkbox" /> Research (2)</label>
-                            <label><input type="checkbox" /> Content Creation (3)</label>
+                            {filteredIndustries.map((industry, index) => (
+                                <label key={index}>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedIndustries.includes(industry)}
+                                        onChange={() => handleIndustryCheckboxChange(industry)}
+                                    /> 
+                                    {industry} ({Math.floor(Math.random() * 50) + 1})
+                                </label>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -101,32 +185,34 @@ export default function Home() {
                             <button className="view-button">List</button>
                         </div>
                         <div className="sort-dropdown">
-                            <select className="sort-select">
-                                <option>Newest</option>
-                                <option>Oldest</option>
-                                <option>Popular</option>
+                            <select className="sort-select" value={sort} onChange={handleSortChange}>
+                                <option value="newest">Newest</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="popular">Popular</option>
                             </select>
                         </div>
                     </div>
-                    {loading ? <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}><PrepLoader /></div> :
+                    {loading ? (
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <PrepLoader />
+                        </div>
+                    ) : (
                         <div className="agents-list">
-                            {
-                                agents.map((agent) => (
-                                    <div className="agent-card" key={agent.id} style={{ cursor: 'pointer' }} onClick={() => navigate(`/detail?${agent.id}`)}>
-                                        <img src={agent.img} alt={agent.name} className="agent-image" />
-                                        <div className="agent-info">
-                                            <h3>{agent.name}</h3>
-                                            <p>{agent.description}</p>
-                                            <div className="tags">
-                                                <span className="tag free">{agent.pricing_model}</span>
-                                                <span className="tag category">{agent.category}</span>
-                                                <span className="tag likes">{agent.industry}</span>
-                                            </div>
+                            {agents.map((agent) => (
+                                <div className="agent-card" key={agent.id} style={{ cursor: 'pointer' }} onClick={() => navigate(`/detail?${agent.id}`)}>
+                                    <img src={agent.img} alt={agent.name} className="agent-image" />
+                                    <div className="agent-info">
+                                        <h3>{agent.name}</h3>
+                                        <p>{agent.description}</p>
+                                        <div className="tags">
+                                            <span className="tag free">{agent.pricing_model}</span>
+                                            <span className="tag paid">{agent.api_type}</span>
                                         </div>
                                     </div>
-                                ))
-                            }
-                        </div>}
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
