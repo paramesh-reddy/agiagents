@@ -10,13 +10,16 @@ import img7 from '../../Assets/icon2.png';
 import img8 from '../../Assets/icon8.png';
 import img9 from '../../Assets/icon9.png';
 import { useNavigate } from 'react-router-dom';
+import PrepLoader from '../../components/prep-loader/loader';
 
 export default function Home() {
     const [agents, setAgents] = useState([]);
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch the data from the API
+        setLoading(true)
         fetch('http://18.143.174.1/api/agent_list')
             .then(response => response.json())
             .then(data => {
@@ -47,9 +50,11 @@ export default function Home() {
                         img: images[agent[0] % images.length] // Use modulo to cycle through the images
                     };
                 });
+                setLoading(false)
                 setAgents(updatedData);
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => setLoading(false)
+            );
     }, []);
 
     return (
@@ -103,25 +108,25 @@ export default function Home() {
                             </select>
                         </div>
                     </div>
-
-                    <div className="agents-list">
-                        {
-                            agents.map((agent) => (
-                                <div className="agent-card" key={agent.id} style={{ cursor: 'pointer' }} onClick={() => navigate(`/detail?${agent.id}`)}>
-                                    <img src={agent.img} alt={agent.name} className="agent-image" />
-                                    <div className="agent-info">
-                                        <h3>{agent.name}</h3>
-                                        <p>{agent.description}</p>
-                                        <div className="tags">
-                                            <span className="tag free">{agent.pricing_model}</span>
-                                            <span className="tag category">{agent.category}</span>
-                                            <span className="tag likes">{agent.industry}</span>
+                    {loading ? <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}><PrepLoader /></div> :
+                        <div className="agents-list">
+                            {
+                                agents.map((agent) => (
+                                    <div className="agent-card" key={agent.id} style={{ cursor: 'pointer' }} onClick={() => navigate(`/detail?${agent.id}`)}>
+                                        <img src={agent.img} alt={agent.name} className="agent-image" />
+                                        <div className="agent-info">
+                                            <h3>{agent.name}</h3>
+                                            <p>{agent.description}</p>
+                                            <div className="tags">
+                                                <span className="tag free">{agent.pricing_model}</span>
+                                                <span className="tag category">{agent.category}</span>
+                                                <span className="tag likes">{agent.industry}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))
-                        }
-                    </div>
+                                ))
+                            }
+                        </div>}
                 </div>
             </div>
         </div>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './index.css'; // Import the CSS file for styling
 import img1 from '../../Assets/icon1.png';
+import { useNavigate } from 'react-router-dom';
+import PrepLoader from '../../components/prep-loader/loader';
 
 const DetailPage = () => {
     const [agent, setAgent] = useState(null);
-
+    const navigate = useNavigate()
     // Extract the ID from the URL
     const getAgentIdFromURL = () => {
         const url = window.location.href;
@@ -30,11 +32,11 @@ const DetailPage = () => {
     }, []);
     console.log(agent)
     if (!agent) {
-        return <div>Loading...</div>; // Show a loading state while fetching data
+        return <div style={{display:'display',justifyContent:'center',alignItems:'center',height:'100vh'}}><PrepLoader /></div>; // Show a loading state while fetching data
     }
     return (
         <div className="detail-container">
-            <button className="back-button">← Back to Directory</button>
+            <button className="back-button" onClick={() => navigate('/')}>← Back to Directory</button>
 
             <div className="detail-header section-border">
                 <img src={img1} alt={agent.name} className="agent-logo" />
@@ -98,7 +100,7 @@ const DetailPage = () => {
             <div className="detail-section section-border">
                 <h2>Preview</h2>
                 <img
-                    src={agent?.details?.preview_image ||"https://via.placeholder.com/800x400"}
+                    src={agent?.details?.preview_image || "https://via.placeholder.com/800x400"}
                     alt="Phonely AI Preview"
                     className="preview-image"
                 />
