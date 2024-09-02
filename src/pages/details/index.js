@@ -1,38 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css'; // Import the CSS file for styling
 import img1 from '../../Assets/icon1.png';
 
 const DetailPage = () => {
-    const agent = {
-        id: 1,
-        name: "Phonely AI",
-        description: "Automated AI receptionist for businesses.",
-        overview: "Phonely AI provides businesses with an AI-powered receptionist that handles phone calls, schedules appointments, and offers customer support. The platform integrates with existing scheduling software and CRM systems, offering real-time analytics and insights after each call. This helps businesses maintain continuous phone support and improves customer satisfaction by ensuring no call is missed.",
-        key_features: [
-            "Automated Conversational Phone Solutions",
-            "AI Analytics and Call Summaries",
-            "Real-time Task Execution",
-            "CRM Integration",
-            "Customizable Voice and Style"
-        ],
-        use_cases: [
-            "Customer Support",
-            "Appointment Scheduling",
-            "Inquiry Handling",
-            "Sales Insights",
-            "Task Automation"
-        ],
-        details: {
-            created_by: "Will Bodewes and Nisal Ranasinghe",
-            category: "Customer Service",
-            industry: "Technology",
-            pricing_model: "Freemium",
-            access: "Closed Source",
-            date_added: "2024-08-04",
-        },
-        website_url: "http://www.phonelyai.com"
+    const [agent, setAgent] = useState(null);
+
+    // Extract the ID from the URL
+    const getAgentIdFromURL = () => {
+        const url = window.location.href;
+        const id = url.split('?')[1]; // Split the URL at the '?' and get the part after it
+        return id; // Return the ID directly
     };
 
+
+    // Fetch agent details from the API
+    useEffect(() => {
+        const fetchAgentDetails = async () => {
+            const agentId = getAgentIdFromURL();
+            try {
+                const response = await fetch(`http://18.143.174.1/api/agents_detail/${agentId}`);
+                const data = await response.json();
+                setAgent(data?.agent);
+            } catch (error) {
+                console.error('Error fetching agent details:', error);
+            }
+        };
+
+        fetchAgentDetails();
+    }, []);
+    console.log(agent)
+    if (!agent) {
+        return <div>Loading...</div>; // Show a loading state while fetching data
+    }
     return (
         <div className="detail-container">
             <button className="back-button">← Back to Directory</button>
@@ -98,9 +97,9 @@ const DetailPage = () => {
             {/* Preview Section */}
             <div className="detail-section section-border">
                 <h2>Preview</h2>
-                <img 
-                    src="https://via.placeholder.com/800x400" 
-                    alt="Phonely AI Preview" 
+                <img
+                    src={agent?.details?.preview_image ||"https://via.placeholder.com/800x400"}
+                    alt="Phonely AI Preview"
                     className="preview-image"
                 />
             </div>
