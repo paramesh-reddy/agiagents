@@ -1,41 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Form.css";
 import axios from 'axios'
 export default function SubmitPage() {
-  const handleCreate = async () => {
-    const emailInput = document.getElementById("email");
+  const [formData, setFormData] = useState({
+    tagline: "",
+    likes: "",
+    overview: "",
+    key_features: "",
+    use_cases: "",
+    created_by: "",
+    access: "",
+    tags: "",
+    preview_image: "",
+    demo_video: "",
+    email: "",
+    logo: "",
+    pricing: "",
+    category: "",
+    industry: ""
+  });
 
-    const email = emailInput.value;
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+
+  const handleCreate = async (e) => {
+    console.log('heyuu')
+    e.preventDefault();
+
+    const formBody = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formBody.append(key, formData[key]);
+    });
 
     try {
-      const formData = new FormData();
-      formData.append("email", email);
-
       const response = await axios.post(
-        "https://otamat.com/api/Subscribe",
-        formData,
+        "http://18.143.174.1/api/agents_create",
+        formBody,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-          },
+            "Content-Type": "multipart/form-data"
+          }
         }
       );
-
       console.log("Success:", response.data);
-      if (response.data === "Success") {
-        localStorage.setItem("user-name", email);
 
+      if (response.data === "Success") {
+        localStorage.setItem("user-email", formData.email);
         window.open("index3.html");
       } else {
-        alert("Please enter correct username or password!");
-        return false;
+        alert("Please enter the correct data!");
       }
     } catch (error) {
       console.error("Error:", error);
-
-      throw error;
+      alert("An error occurred while submitting the form.");
     }
   };
+
+
   return (
     <div className="card" class="card" name="SubmitPage">
       <div>
@@ -60,11 +88,12 @@ export default function SubmitPage() {
 
             <input
               className="container"
-              type="email"
+              type="text"
               class="form-control"
+              name="name"
               id="floatingInputGrid"
               placeholder="Enter AI Agent Name"
-              value="Enter AI Agent Name"
+              onChange={handleChange}
             />
           </div>
           <div style={{ width: "50%" }}>
@@ -74,11 +103,12 @@ export default function SubmitPage() {
 
             <input
               className="container"
-              type="email"
+              type="text"
               class="form-control"
+              name="created_by"
               id="floatingInputGrid"
+              onChange={handleChange}
               placeholder="Enter Creater name"
-              value="Enter Creater name"
             />
           </div>
         </div>
@@ -90,11 +120,12 @@ export default function SubmitPage() {
 
             <input
               className="container"
-              type="email"
+              type="text"
               class="form-control"
+              name="website_url"
+              onChange={handleChange}
               id="floatingInputGrid"
               placeholder="Enter Website URL or github Url"
-              value="Enter Website URL or github Url"
             />
           </div>
           <div style={{ width: "50%" }}>
@@ -104,447 +135,429 @@ export default function SubmitPage() {
             <input
               className="container"
               type="email"
+              onChange={handleChange}
+              name="email"
               class="form-control"
               id="floatingInputGrid"
               placeholder="Enter Email"
-              value="Enter Email"
             />
           </div>
         </div>
       </div>
-      <div className="check-box1">
-        <div>
-          <label className="hi" for="Ai Agent">
-            Access Model*
-          </label>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadioDefault1"
-            />
-            <label
-              className="hi"
-              class="form-check-label"
-              for="flexRadioDefault1"
-            >
-              Open Source
+      <div>
+        <div className="check-box1">
+          <div>
+            <label className="hi" htmlFor="accessModel">
+              Access Model*
             </label>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="access"
+                id="flexRadioDefault1"
+                value="openSource"
+                checked={formData.access === 'openSource'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault1">
+                Open Source
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="access"
+                id="flexRadioDefault2"
+                value="closedSource"
+                checked={formData.access === 'closedSource'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault2">
+                Closed Source
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="access"
+                id="flexRadioDefault3"
+                value="api"
+                checked={formData.access === 'api'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault3">
+                API
+              </label>
+            </div>
           </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label
-              className="hi"
-              class="form-check-label"
-              for="flexRadioDefault2"
-            >
-              Closed Source
+          <br />
+          <div>
+            <label className="hi" htmlFor="pricingModel">
+              Pricing Model*
             </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label
-              className="hi"
-              class="form-check-label"
-              for="flexRadioDefault2"
-            >
-              Api
-            </label>
-          </div>
-        </div>
-        <br />
-        <div>
-          <label className="hi" for="Ai Agent">
-            Pricing Model*
-          </label>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault1"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Free
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault1"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Freemium
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault1"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Paid
-            </label>
-          </div>
-        </div>
-      </div>
-      <div className="check-box2">
-        <div>
-          <label className="hi" for="Ai Agent">
-            Category*
-          </label>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault1">
-              Personal Assistant
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Data Analysis
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Research
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Digital Workers
-            </label>
-          </div>
-        </div>
-        <br />
-        <div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault1">
-              Productivity
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Customer Service
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Transition
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              AI Agents Builder
-            </label>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="pricing"
+                id="flexRadioDefault4"
+                value="free"
+                checked={formData.pricing === 'free'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault4">
+                Free
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="pricing"
+                id="flexRadioDefault5"
+                value="freemium"
+                checked={formData.pricing === 'freemium'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault5">
+                Freemium
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="pricing"
+                id="flexRadioDefault6"
+                value="paid"
+                checked={formData.pricing === 'paid'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault6">
+                Paid
+              </label>
+            </div>
           </div>
         </div>
 
-        <div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault1">
-              Content Creation
+        <div className="check-box2">
+          <div>
+            <label className="hi" htmlFor="category">
+              Category*
             </label>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault7"
+                value="personalAssistant"
+                checked={formData.category === 'personalAssistant'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault7">
+                Personal Assistant
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault8"
+                value="dataAnalysis"
+                checked={formData.category === 'dataAnalysis'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault8">
+                Data Analysis
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault9"
+                value="research"
+                checked={formData.category === 'research'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault9">
+                Research
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault10"
+                value="digitalWorkers"
+                checked={formData.category === 'digitalWorkers'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault10">
+                Digital Workers
+              </label>
+            </div>
           </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Coding
-            </label>
+          <br />
+          <div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault11"
+                value="productivity"
+                checked={formData.category === 'productivity'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault11">
+                Productivity
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault12"
+                value="customerService"
+                checked={formData.category === 'customerService'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault12">
+                Customer Service
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault13"
+                value="transition"
+                checked={formData.category === 'transition'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault13">
+                Transition
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault14"
+                value="aiAgentsBuilder"
+                checked={formData.category === 'aiAgentsBuilder'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault14">
+                AI Agents Builder
+              </label>
+            </div>
           </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              WorkFlow
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault2"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Other
-            </label>
-          </div>
-        </div>
-      </div>
-      <div className="check-box3">
-        <div>
-          <label className="hi" for="Ai Agent">
-            Industry*
-          </label>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Technology
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Education
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Entertainment
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Human Resources
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Travel & Hospitality
-            </label>
-          </div>
-        </div>
-        <br />
-        <div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Finanace
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              E-commerce
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Manufacturing
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Energy & Utilities
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Agriculture
-            </label>
+          <div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault15"
+                value="contentCreation"
+                checked={formData.category === 'contentCreation'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault15">
+                Content Creation
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault16"
+                value="coding"
+                checked={formData.category === 'coding'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault16">
+                Coding
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault17"
+                value="workFlow"
+                checked={formData.category === 'workFlow'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault17">
+                WorkFlow
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="category"
+                id="flexRadioDefault18"
+                value="other"
+                checked={formData.category === 'other'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault18">
+                Other
+              </label>
+            </div>
           </div>
         </div>
 
-        <div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Healthcare
+        <div className="check-box3">
+          <div>
+            <label className="hi" htmlFor="industry">
+              Industry*
             </label>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault19"
+                value="fintech"
+                checked={formData.industry === 'fintech'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault19">
+                Fintech
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault20"
+                value="healthcare"
+                checked={formData.industry === 'healthcare'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault20">
+                Healthcare
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault21"
+                value="retail"
+                checked={formData.industry === 'retail'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault21">
+                Retail
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault22"
+                value="education"
+                checked={formData.industry === 'education'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault22">
+                Education
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault23"
+                value="transportation"
+                checked={formData.industry === 'transportation'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault23">
+                Transportation
+              </label>
+            </div>
           </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Marketing
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Legal
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Real Estate
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault3"
-              id="flexRadioDefault2"
-              checked
-            />
-            <label class="form-check-label" for="flexRadioDefault3">
-              Other
-            </label>
+          <br />
+          <div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault24"
+                value="government"
+                checked={formData.industry === 'government'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault24">
+                Government
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault25"
+                value="enterprise"
+                checked={formData.industry === 'enterprise'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault25">
+                Enterprise
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault26"
+                value="media"
+                checked={formData.industry === 'media'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault26">
+                Media
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault27"
+                value="other"
+                checked={formData.industry === 'other'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault27">
+                Other
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -553,29 +566,29 @@ export default function SubmitPage() {
         <p>
           <label className="hi">Tagline*</label>
         </p>
-        <textarea id="tagline" name="hi" rows="3" cols="95">
-          This is used on your AI Agent card.
+        <textarea id="tagline" name="tags" rows="3" onChange={handleChange}
+        >
         </textarea>
       </div>
 
       <div>
         <label className="hi">Description*</label>
-        <textarea id="discription" name="hi" rows="7" cols="95">
-          This is used on your AI Agent card.
+        <textarea id="discription" name="description" rows="7" cols="90" onChange={handleChange}
+        >
         </textarea>
       </div>
 
       <div>
         <label className="hi">Key Features</label>
-        <textarea id="tagline" name="hi" rows="5" cols="95">
-          This is used on your AI Agent card.
+        <textarea id="tagline" name="key_features" rows="5" cols="90" onChange={handleChange}
+        >
         </textarea>
       </div>
 
       <div>
         <label className="hi">Use Cases</label>
-        <textarea id="tagline" name="hi" rows="4" cols="95">
-          This is used on your AI Agent card.
+        <textarea id="tagline" rows="4" cols="90" name="use_cases" onChange={handleChange}
+        >
         </textarea>
       </div>
       <div className="input-container">
@@ -589,8 +602,9 @@ export default function SubmitPage() {
             type="email"
             class="form-control"
             id="select image"
-            placeholder="SELECT IMAGE"
-            value="SELECT IMAGE"
+            placeholder="Logo"
+            name="logo"
+            onChange={handleChange}
           />
         </div>
         <div style={{ width: "20%" }}>
@@ -604,8 +618,9 @@ export default function SubmitPage() {
             type="email"
             class="form-control"
             id="select image"
-            placeholder="SELECT IMAGE"
-            value="SELECT IMAGE"
+            placeholder="Preview Image"
+            name="preview_image"
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -621,11 +636,12 @@ export default function SubmitPage() {
             class="form-control"
             id="Youtube"
             placeholder="Enter a YouTube or Vimeo URL."
-            value="Enter a YouTube or Vimeo URL."
+            name="demo_video"
+            onChange={handleChange}
           />
         </div>
       </div>
-      <button className={() => handleCreate()}>Submit AI Agent</button>
+      <button className="Onclick" onClick={(e) => handleCreate(e)}>Submit AI Agent</button>
     </div>
   );
 }
