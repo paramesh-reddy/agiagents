@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import PrepLoader from '../../components/prep-loader/loader';
 
 export default function Home() {
+  
     const [agents, setAgents] = useState([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -116,11 +117,12 @@ export default function Home() {
         industry.toLowerCase().includes(industrySearch.toLowerCase())
     );
 
+    
     return (
         <div className="container-data">
             <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
                 <h1 className="explore">Explore the World of AI Agents</h1>
-                <p className="list">Curated list of 100+ AI Agents and Frameworks</p>
+                <p className="list">Enter To World Of Collected List Of 100+ AI Agents </p>
                 <input
                     placeholder='Search for AI Agent here...'
                     className="input mb-5"
@@ -149,7 +151,8 @@ export default function Home() {
                                         checked={selectedCategories.includes(category)}
                                         onChange={() => handleCategoryCheckboxChange(category)}
                                     /> 
-                                    {category} ({Math.floor(Math.random() * 50) + 1})
+                                    {category}
+                                     {/* ({Math.floor(Math.random() * 50) + 1}) */}
                                 </label>
                             ))}
                         </div>
@@ -171,7 +174,8 @@ export default function Home() {
                                         checked={selectedIndustries.includes(industry)}
                                         onChange={() => handleIndustryCheckboxChange(industry)}
                                     /> 
-                                    {industry} ({Math.floor(Math.random() * 50) + 1})
+                                    {industry} 
+                                    {/* ({Math.floor(Math.random() * 50) + 1}) */}
                                 </label>
                             ))}
                         </div>
@@ -181,8 +185,8 @@ export default function Home() {
                 <div className="agents-section">
                     <div className="agents-header">
                         <div className="view-switch">
-                            <button className="view-button active">Grid</button>
-                            <button className="view-button">List</button>
+                            {/* <button className="view-button active">Grid</button>
+                            <button className="view-button">List</button> */}
                         </div>
                         <div className="sort-dropdown">
                             <select className="sort-select" value={sort} onChange={handleSortChange}>

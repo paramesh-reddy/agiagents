@@ -2,19 +2,19 @@
 .container-data {
     padding: 20px;
     font-family: Arial, sans-serif;
-    background-color: #f5f9ff;
+    background-color:rgb(113, 113, 215);
 }
 
 .explore {
     font-size: 2em;
     margin-bottom: 10px;
-    color: #333;
+    color:white;
 }
 
 .list {
     font-size: 1.2em;
     margin-bottom: 20px;
-    color: #555;
+    color:white;
 }
 
 .input {

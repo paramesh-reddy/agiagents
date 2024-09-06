@@ -3,13 +3,15 @@ import './Navbar.css';
 import { Link } from 'react-scroll';
 
 export default function Navbar() {
+  
+  
   return (
     <div className="navbar">
       <div className="navbar-container">
-        <h2 className="navbar-heading">AI Agents Directory</h2>
+        <h2 className="navbar-heading">AI Agents Hub </h2>
         <div className="navbar-menu">
           <Link to="About" smooth={true} duration={500}>AI Agents News</Link>
-          <Link to="Skills" smooth={true} duration={500}>Submit AI Agent</Link>
+          <Link to="SubmitPage" smooth={true} duration={500}>Submit AI Agent</Link>
         </div>
       </div>
     </div>
