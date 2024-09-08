@@ -3,9 +3,9 @@ import "./Form.css";
 import axios from 'axios'
 export default function SubmitPage() {
   const [formData, setFormData] = useState({
-    tagline: "",
-    likes: "",
-    overview: "",
+    // tagline: "",
+    // likes: "",
+    // overview: "",
     key_features: "",
     use_cases: "",
     created_by: "",
@@ -17,7 +17,10 @@ export default function SubmitPage() {
     logo: "",
     pricing: "",
     category: "",
-    industry: ""
+    industry: "",
+    description:'',
+    name:'',
+    website_url:''
   });
 
   // Handle form input changes
