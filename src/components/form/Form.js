@@ -41,7 +41,7 @@ export default function SubmitPage() {
 
     try {
       const response = await axios.post(
-        "http://18.143.174.1/api/agents_create",
+        " http://172.16.145.114:4000/api/agents_create",
         formBody,
         {
           headers: {
@@ -522,12 +522,12 @@ export default function SubmitPage() {
                 type="radio"
                 name="industry"
                 id="flexRadioDefault25"
-                value="enterprise"
-                checked={formData.industry === 'enterprise'}
+                value="Agriculture"
+                checked={formData.industry === 'Agriculture'}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault25">
-                Enterprise
+                Agriculture
               </label>
             </div>
             <div className="form-check">
@@ -544,20 +544,37 @@ export default function SubmitPage() {
                 Media
               </label>
             </div>
+            
+            
             <div className="form-check">
               <input
                 className="form-check-input"
                 type="radio"
                 name="industry"
                 id="flexRadioDefault27"
-                value="other"
-                checked={formData.industry === 'other'}
+                value="E-commerce"
+                checked={formData.industry === 'E-commerce'}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault27">
-                Other
+              E-commerce
               </label>
             </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="industry"
+                id="flexRadioDefault27"
+                value="Legal"
+                checked={formData.industry === 'Legal'}
+                onChange={handleChange}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault27">
+            Legal
+              </label>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -566,30 +583,52 @@ export default function SubmitPage() {
         <p>
           <label className="hi">Tagline*</label>
         </p>
-        <textarea id="tagline" name="tags" rows="3" onChange={handleChange}
+        <textarea id="tagline" placeholder="This is used on your AI Agent card." name="tags" rows="3" onChange={handleChange}
         >
         </textarea>
       </div>
 
       <div>
         <label className="hi">Description*</label>
-        <textarea id="discription" name="description" rows="7" cols="90" onChange={handleChange}
+        <textarea id="discription" placeholder="Briefly describe your AI Agent, the description is used on your AI Agent page ." name="description" rows="7" cols="90" onChange={handleChange}
         >
         </textarea>
       </div>
 
       <div>
         <label className="hi">Key Features</label>
-        <textarea id="tagline" name="key_features" rows="5" cols="90" onChange={handleChange}
+        <textarea id="tagline" placeholder="Eneter 5 comma-seperated features of your AI Agent"   name="key_features" rows="5" cols="90" onChange={handleChange}
+        >
+        </textarea>
+      </div>
+      
+
+      <div>
+        <label className="hi">Use Cases</label>
+        <textarea id="tagline" placeholder="Enter 5 comma-seperated use cases for your AI Agent " rows="4" cols="90" name="use_cases" onChange={handleChange}
         >
         </textarea>
       </div>
 
-      <div>
-        <label className="hi">Use Cases</label>
-        <textarea id="tagline" rows="4" cols="90" name="use_cases" onChange={handleChange}
-        >
-        </textarea>
+      <div className="input-container">
+        <div style={{ width: "100%" }}>
+          <label className="hi" for="Ai Agent">
+            Tags
+          </label>
+
+          <textarea 
+          rows={3}
+          
+            className="container"
+            type="email"
+            class="form-control"
+            id="tagline"
+            placeholder="Enter comma-seperated tags."
+            name="tags"
+            onChange={handleChange}/>
+            
+        
+        </div>
       </div>
       <div className="input-container">
         <div style={{ width: "20%" }}>
