@@ -3,7 +3,7 @@ import './index.css'; // Import the CSS file for styling
 import img1 from '../../Assets/icon1.png';
 import { useNavigate } from 'react-router-dom';
 import PrepLoader from '../../components/prep-loader/loader';
-
+import { FaUser, FaTag, FaIndustry, FaDollarSign, FaLock, FaCalendarAlt } from 'react-icons/fa'; // Import icons
 const DetailPage = () => {
     const [agent, setAgent] = useState(null);
     const navigate = useNavigate()
@@ -66,7 +66,7 @@ const DetailPage = () => {
             {/* Key Features Section */}
             <div className="detail-section section-border">
                 <h2>Key Features</h2>
-                <ul>
+                <ul className="star-list">
                     {agent.key_features.map((feature, index) => (
                         <li key={index}>{feature}</li>
                     ))}
@@ -76,7 +76,7 @@ const DetailPage = () => {
             {/* Use Cases Section */}
             <div className="detail-section section-border">
                 <h2>Use Cases</h2>
-                <ul>
+                <ul className='tick-list'>
                     {agent.use_cases.map((useCase, index) => (
                         <li key={index}>{useCase}</li>
                     ))}
@@ -87,12 +87,12 @@ const DetailPage = () => {
             <div className="detail-section section-border">
                 <h2>AI Agent Details</h2>
                 <div className="agent-details">
-                    <p><strong>Created by:</strong> {agent.details.created_by}</p>
-                    <p><strong>Category:</strong> {agent.details.category}</p>
-                    <p><strong>Industry:</strong> {agent.details.industry}</p>
-                    <p><strong>Pricing Model:</strong> {agent.details.pricing_model}</p>
-                    <p><strong>Access:</strong> {agent.details.access}</p>
-                    <p><strong>Date Added:</strong> {new Date(agent.details.date_added).toLocaleDateString()}</p>
+                    <p> <FaUser className="icon" /><strong>Created by:</strong> {agent.details.created_by}</p>
+                    <p><FaTag className="icon" /> <strong>Category:</strong> {agent.details.category}</p>
+                    <p><FaIndustry className="icon" /><strong>Industry:</strong> {agent.details.industry}</p>
+                    <p> <FaDollarSign className="icon" /><strong>Pricing Model:</strong> {agent.details.pricing_model}</p>
+                    <p><FaLock className="icon" /><strong>Access:</strong> {agent.details.access}</p>
+                    <p><FaCalendarAlt className="icon" /><strong>Date Added:</strong> {new Date(agent.details.date_added).toLocaleDateString()}</p>
                 </div>
             </div>
 
@@ -119,6 +119,7 @@ const DetailPage = () => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                 ></iframe>
+                
             </div>
         </div>
     );

@@ -6,6 +6,7 @@ import HomePage from '../src/pages/home'; // Import your homepage component
 import DetailPage from './pages/details';
 import Footer from './components/footer/Footer';
 import SubmitPage from './components/form/Form';
+import UpdatePage from './components/update/Form';
 function App() {
   return (
     <Router>
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<HomePage />} /> 
           <Route path="/detail" element={<DetailPage />}/>
           <Route path="/submit" element={<SubmitPage/>} />
+          <Route path='/update/:id' element={<UpdatePage/>}/>
         </Routes>
       {/* <SubmitPage/> */}
         <Footer/>

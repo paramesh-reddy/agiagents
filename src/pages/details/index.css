@@ -1,22 +1,29 @@
+
 .detail-container {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
+    background-color: rgb(134, 233, 200);
+    color: white;
 }
 
 .back-button {
-    background-color: #f1f1f1;
+    background-color: rgb(134, 233, 200);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     margin-bottom: 20px;
+    
 }
 
 .detail-header {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 20px;background-color: rgb(12, 172, 12);
+    color:black;
+
+
 }
 
 .agent-logo {
@@ -31,7 +38,7 @@
 }
 
 .agent-tagline {
-    color: #666;
+    color:black;
     margin: 10px 0;
 }
 
@@ -43,9 +50,10 @@
 
 .tag {
     padding: 5px 10px;
-    background-color: #eee;
+    background-color: #e9dada;
     border-radius: 5px;
     font-size: 0.875rem;
+
 }
 
 .visit-website-button {
@@ -55,19 +63,22 @@
 .visit-website-button a {
     text-decoration: none;
     color: white;
-    background-color: #007bff;
+    background-color: #f4f8fb;
     padding: 10px 20px;
     border-radius: 5px;
+    color:black;
 }
 
 .detail-section {
     margin-top: 20px;
     padding: 20px;
+    background-color: white;
+    color:black;
 }
 
 .section-border {
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 17px;
 }
 
 .preview-image {
@@ -94,3 +105,52 @@
         margin-bottom: 20px;
     }
 }
+.star-list {
+    list-style-type: none; /* Remove default bullet points */
+    padding-left: 0; /* Optional, to remove default padding */
+  }
+  
+  .star-list li {
+    position: relative;
+    padding-left: 20px; /* Space for the star */
+  }
+  
+  .star-list li::before {
+    content: '★'; /* Star symbol */
+    position: absolute;
+    left: 0;
+    
+    color: rgb(132, 25, 246)/* Optional: color of the star */
+  }
+  .tick-list {
+    list-style-type: none; /* Remove default bullet points */
+    padding-left: 0; /* Optional, adjust padding if needed */
+  }
+  
+  .tick-list li {
+    position: relative;
+    padding-left: 20px; /* Add space for the tick */
+  }
+  
+  .tick-list li::before {
+    content: '✓'; /* Tick symbol */
+    position: absolute;
+    left: 0;
+    color: rgba(244, 43, 43, 0.858); /* Customize the color of the tick */
+  }
+  .agent-details p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .icon {
+    margin-right: 10px; /* Space between the icon and text */
+    color: #2499abb9; /* Adjust the color of the icons */
+    font-size: 18px; /* Adjust icon size */
+  }
+  
+  strong {
+    margin-left: 5px;
+  }
+  
