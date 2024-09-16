@@ -694,7 +694,7 @@ export default function UpdatePage() {
 
           <input
             className="container"
-            type="file"
+            type="text"
             value={formData?.logo}
             class="form-control"
             id="select image"
@@ -711,7 +711,7 @@ export default function UpdatePage() {
 
           <input
             className="container"
-            type="file"
+            type="text"
             class="form-control"
             id="select image"
             value={formData?.preview_image}
