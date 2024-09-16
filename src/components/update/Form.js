@@ -46,7 +46,7 @@ export default function UpdatePage() {
     try {
       const agentId = getAgentIdFromURL();
       const response = await axios.post(
-        `http://18.143.174.1/api/agent/${agentId}/modify/`,
+        `http://54.253.162.126:4001/api/agent/${agentId}/modify/`,
         formBody,
         {
           headers: {
@@ -81,12 +81,12 @@ export default function UpdatePage() {
       const agentId = getAgentIdFromURL();
       try {
         const response = await fetch(
-          `http://18.143.174.1/api/agents_detail/${agentId}`
+          `http://54.253.162.126:4001/api/agents_detail/${agentId}`
         );
         const data = await response.json();
         const finalData = {
           ...data?.agent,
-          access: data?.details?.access,
+          access: data?.agent?.details?.access,
 
           category: data?.agent?.details?.category,
           created_by: data?.agent?.details?.created_by,
@@ -677,10 +677,10 @@ export default function UpdatePage() {
             rows={3}
             className="container"
             type="email"
-            name="tags"
+            name="tag"
             class="form-control"
             id="tagline"
-            value={formData?.tags}
+            value={formData?.tag}
             placeholder="Enter comma-seperated tags."
             onChange={handleChange}
           />
@@ -694,11 +694,11 @@ export default function UpdatePage() {
 
           <input
             className="container"
-            type="text"
+            type="email"
             value={formData?.logo}
             class="form-control"
             id="select image"
-            placeholder="SelectFile"
+            placeholder="select"
             name="logo"
             onChange={handleChange}
           />
@@ -715,7 +715,7 @@ export default function UpdatePage() {
             class="form-control"
             id="select image"
             value={formData?.preview_image}
-            placeholder="Preview Image"
+            placeholder="select Image"
             name="preview_image"
             onChange={handleChange}
           />

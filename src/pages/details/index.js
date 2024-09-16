@@ -23,7 +23,7 @@ const DetailPage = () => {
         const fetchAgentDetails = async () => {
             const agentId = getAgentIdFromURL();
             try {
-                const response = await fetch(`http://18.143.174.1/api/agents_detail/${agentId}`);
+                const response = await fetch(`http://54.253.162.126:4001/api/agents_detail/${agentId}`);
                 const data = await response.json();
                 setAgent(data?.agent);
             } catch (error) {
@@ -62,13 +62,13 @@ const DetailPage = () => {
 
             {/* Overview Section */}
             <div className="detail-section section-border">
-                <h2>Overview: {agent.name}</h2>
-                <p>{agent.overview}</p>
+                <h2>Description:</h2>
+                <p>{agent?.description}</p>
             </div>
                       {/*tags Section */}
                       <div className="detail-section section-border">
-                <h2>Tags {agent?.tags}</h2>
-                <p>{agent?.tags}</p>
+                <h2>Tags </h2>
+                <p>{agent?.tag}</p>
             </div>
 
 
@@ -93,7 +93,7 @@ const DetailPage = () => {
             </div> */}
                   {/*tagline Section */}
                   <div className="detail-section section-border">
-                <h2>Tagline {agent?.tagline}</h2>
+                <h2>Tagline </h2>
                 <p>{agent.tagline}</p>
             </div>
 
@@ -124,7 +124,7 @@ const DetailPage = () => {
 
             {/* Demo Video Section */}
             <div className="detail-section section-border">
-                <h2>Demo Video</h2>
+                <h2>DemoVideo</h2>
                 <iframe
                   
                     className="demo_video"

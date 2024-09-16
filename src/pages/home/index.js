@@ -71,7 +71,7 @@ export default function Home() {
 
                 const queryString = queryParams.length ? `?${queryParams.join('&')}` : '';
 
-                const response = await fetch(`http://18.143.174.1/api/agent_list${queryString}`);
+                const response = await fetch(`http://54.253.162.126:4001/api/agent_list${queryString}`);
                 const data = await response.json();
 
                 const images = [img1, img6, img2, img8, img5, img6, img7, img8, img9];

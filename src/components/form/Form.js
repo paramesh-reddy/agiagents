@@ -45,7 +45,7 @@ export default function SubmitPage() {
 
     try {
       const response = await axios.post(
-        "http://18.143.174.1/api/agents_create",
+        "http://54.253.162.126:4001/api/agents_create",
         formBody,
         {
           headers: {
