@@ -9,10 +9,13 @@ const DetailPage = () => {
     const navigate = useNavigate()
     // Extract the ID from the URL
     const getAgentIdFromURL = () => {
+
         const url = window.location.href;
         const id = url.split('?')[1]; // Split the URL at the '?' and get the part after it
         return id; // Return the ID directly
     };
+
+
 
 
     // Fetch agent details from the API
@@ -39,10 +42,10 @@ const DetailPage = () => {
             <button className="back-button" onClick={() => navigate('/')}>← Back to Directory</button>
 
             <div className="detail-header section-border">
-                <img src={img1} alt={agent.name} className="agent-logo" />
+                <img src={img1} alt={agent.tagline} className="agent-logo" />
                 <div className="header-content">
                     <h1>{agent.name}</h1>
-                    <p className="agent-tagline">{agent.description}</p>
+                    <p className="agent-tagline"> {agent?.description}</p>
                     <div className="tags">
                         <span className="tag category">Customer Service</span>
                         <span className="tag industry">Technology</span>
@@ -62,6 +65,12 @@ const DetailPage = () => {
                 <h2>Overview: {agent.name}</h2>
                 <p>{agent.overview}</p>
             </div>
+                      {/*tags Section */}
+                      <div className="detail-section section-border">
+                <h2>Tags {agent?.tags}</h2>
+                <p>{agent?.tags}</p>
+            </div>
+
 
             {/* Key Features Section */}
             <div className="detail-section section-border">
@@ -74,24 +83,30 @@ const DetailPage = () => {
             </div>
 
             {/* Use Cases Section */}
-            <div className="detail-section section-border">
+            {/* <div className="detail-section section-border">
                 <h2>Use Cases</h2>
                 <ul className='tick-list'>
                     {agent.use_cases.map((useCase, index) => (
                         <li key={index}>{useCase}</li>
                     ))}
                 </ul>
+            </div> */}
+                  {/*tagline Section */}
+                  <div className="detail-section section-border">
+                <h2>Tagline {agent?.tagline}</h2>
+                <p>{agent.tagline}</p>
             </div>
 
             {/* AI Agent Details Section */}
             <div className="detail-section section-border">
                 <h2>AI Agent Details</h2>
-                <div className="agent-details">
-                    <p> <FaUser className="icon" /><strong>Created by:</strong> {agent.details.created_by}</p>
-                    <p><FaTag className="icon" /> <strong>Category:</strong> {agent.details.category}</p>
-                    <p><FaIndustry className="icon" /><strong>Industry:</strong> {agent.details.industry}</p>
-                    <p> <FaDollarSign className="icon" /><strong>Pricing Model:</strong> {agent.details.pricing_model}</p>
-                    <p><FaLock className="icon" /><strong>Access:</strong> {agent.details.access}</p>
+                <div className="agent-details">  
+                    <p> <FaUser className="icon" /><strong>Created by:</strong> {agent?.details?.created_by}</p>
+                    <p><FaTag className="icon" /> <strong>Category:</strong> {agent?.details?.category}</p>
+                    <p><FaLock className="icon" /><strong>Access:</strong> {agent?.details?.access}</p>
+                    <p><FaIndustry className="icon" /><strong>Industry:</strong> {agent?.details?.industry}</p>
+                    <p> <FaDollarSign className="icon" /><strong>Pricing Model:</strong> {agent?.details?.pricing}</p>
+                   
                     <p><FaCalendarAlt className="icon" /><strong>Date Added:</strong> {new Date(agent.details.date_added).toLocaleDateString()}</p>
                 </div>
             </div>
@@ -102,7 +117,8 @@ const DetailPage = () => {
                 <img
                     src={agent?.details?.preview_image || "https://via.placeholder.com/800x400"}
                     alt="Phonely AI Preview"
-                    className="preview-image"
+                    className="preview_image"
+                    name="preview_image"
                 />
             </div>
 
@@ -110,10 +126,12 @@ const DetailPage = () => {
             <div className="detail-section section-border">
                 <h2>Demo Video</h2>
                 <iframe
-                    className="demo-video"
+                  
+                    className="demo_video"
                     width="100%"
                     height="500"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Replace with the actual video link
+                     name='demo_video'
+                    src= {agent?.details?.demo_video || "https://www.youtube.com/embed/dQw4w9WgXcQ"} // Replace with the actual video link
                     title="Phonely AI Demo Video"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

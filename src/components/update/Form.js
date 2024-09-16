@@ -4,9 +4,9 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 export default function UpdatePage() {
   const [formData, setFormData] = useState({
-    // tagline: "",
-    // likes: "",
-    // overview: "",
+     tagline: "",
+    likes: "",
+     overview: "",
     key_features: "",
     use_cases: "",
     created_by: "",
@@ -86,12 +86,12 @@ export default function UpdatePage() {
         const data = await response.json();
         const finalData = {
           ...data?.agent,
-          access:data?.details?.access,
-          
-          category:data?.agent?.details?.category,
+          access: data?.details?.access,
+
+          category: data?.agent?.details?.category,
           created_by: data?.agent?.details?.created_by,
           industry: data?.agent?.details?.industry,
-          pricing:data?.agent?.details?.pricing,
+          pricing: data?.agent?.details?.pricing,
         };
         setFormData(finalData);
       } catch (error) {
@@ -163,7 +163,7 @@ export default function UpdatePage() {
               className="container"
               type="text"
               class="form-control"
-              value={formData?.name}
+              value={formData?.website_url}
               name="website_url"
               onChange={handleChange}
               id="floatingInputGrid"
@@ -200,7 +200,7 @@ export default function UpdatePage() {
                 name="access"
                 id="flexRadioDefault1"
                 value="openSource"
-                checked={formData.access === "openSource"}
+                checked={formData?.access === "openSource"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault1">
@@ -214,7 +214,7 @@ export default function UpdatePage() {
                 name="access"
                 id="flexRadioDefault2"
                 value="closedSource"
-                checked={formData.access === "closedSource"}
+                checked={formData?.access === "closedSource"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault2">
@@ -228,7 +228,7 @@ export default function UpdatePage() {
                 name="access"
                 id="flexRadioDefault3"
                 value="api"
-                checked={formData.access === "api"}
+                checked={formData?.access === "api"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault3">
@@ -248,7 +248,7 @@ export default function UpdatePage() {
                 name="pricing"
                 id="flexRadioDefault4"
                 value="free"
-                checked={formData.pricing === "free"}
+                checked={formData?.pricing === "free"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault4">
@@ -262,7 +262,7 @@ export default function UpdatePage() {
                 name="pricing"
                 id="flexRadioDefault5"
                 value="freemium"
-                checked={formData.pricing === "freemium"}
+                checked={formData?.pricing === "freemium"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault5">
@@ -276,7 +276,7 @@ export default function UpdatePage() {
                 name="pricing"
                 id="flexRadioDefault6"
                 value="paid"
-                checked={formData.pricing === "paid"}
+                checked={formData?.pricing === "paid"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault6">
@@ -298,7 +298,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault7"
                 value="personalAssistant"
-                checked={formData.category === "personalAssistant"}
+                checked={formData?.category === "personalAssistant"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault7">
@@ -312,7 +312,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault8"
                 value="dataAnalysis"
-                checked={formData.category === "dataAnalysis"}
+                checked={formData?.category === "dataAnalysis"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault8">
@@ -326,7 +326,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault9"
                 value="research"
-                checked={formData.category === "research"}
+                checked={formData?.category === "research"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault9">
@@ -340,7 +340,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault10"
                 value="digitalWorkers"
-                checked={formData.category === "digitalWorkers"}
+                checked={formData?.category === "digitalWorkers"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault10">
@@ -357,7 +357,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault11"
                 value="productivity"
-                checked={formData.category === "productivity"}
+                checked={formData?.category === "productivity"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault11">
@@ -371,7 +371,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault12"
                 value="customerService"
-                checked={formData.category === "customerService"}
+                checked={formData?.category === "customerService"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault12">
@@ -385,7 +385,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault13"
                 value="transition"
-                checked={formData.category === "transition"}
+                checked={formData?.category === "transition"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault13">
@@ -399,7 +399,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault14"
                 value="aiAgentsBuilder"
-                checked={formData.category === "aiAgentsBuilder"}
+                checked={formData?.category === "aiAgentsBuilder"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault14">
@@ -415,7 +415,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault15"
                 value="contentCreation"
-                checked={formData.category === "contentCreation"}
+                checked={formData?.category === "contentCreation"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault15">
@@ -429,7 +429,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault16"
                 value="coding"
-                checked={formData.category === "coding"}
+                checked={formData?.category === "coding"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault16">
@@ -457,7 +457,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault18"
                 value="other"
-                checked={formData.category === "other"}
+                checked={formData?.category === "other"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault18">
@@ -479,7 +479,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault19"
                 value="fintech"
-                checked={formData.industry === "fintech"}
+                checked={formData?.industry === "fintech"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault19">
@@ -493,7 +493,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault20"
                 value="healthcare"
-                checked={formData.industry === "healthcare"}
+                checked={formData?.industry === "healthcare"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault20">
@@ -507,7 +507,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault21"
                 value="retail"
-                checked={formData.industry === "retail"}
+                checked={formData?.industry === "retail"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault21">
@@ -521,7 +521,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault22"
                 value="education"
-                checked={formData.industry === "education"}
+                checked={formData?.industry === "education"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault22">
@@ -535,7 +535,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault23"
                 value="transportation"
-                checked={formData.industry === "transportation"}
+                checked={formData?.industry === "transportation"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault23">
@@ -552,7 +552,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault24"
                 value="government"
-                checked={formData.industry === "government"}
+                checked={formData?.industry === "government"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault24">
@@ -566,7 +566,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault25"
                 value="Agriculture"
-                checked={formData.industry === "Agriculture"}
+                checked={formData?.industry === "Agriculture"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault25">
@@ -580,7 +580,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault26"
                 value="media"
-                checked={formData.industry === "media"}
+                checked={formData?.industry === "media"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault26">
@@ -595,7 +595,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault27"
                 value="E-commerce"
-                checked={formData.industry === "E-commerce"}
+                checked={formData?.industry === "E-commerce"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault27">
@@ -609,7 +609,7 @@ export default function UpdatePage() {
                 name="industry"
                 id="flexRadioDefault27"
                 value="Legal"
-                checked={formData.industry === "Legal"}
+                checked={formData?.industry === "Legal"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault27">
@@ -627,10 +627,10 @@ export default function UpdatePage() {
         <textarea
           id="tagline"
           placeholder="This is used on your AI Agent card."
-          name="tags"
           rows="3"
           onChange={handleChange}
-          value={formData?.name}
+          name="tagline"
+          value={formData?.tagline}
         ></textarea>
       </div>
 
@@ -694,7 +694,7 @@ export default function UpdatePage() {
 
           <input
             className="container"
-            type="text"
+            type="file"
             value={formData?.logo}
             class="form-control"
             id="select image"
@@ -711,7 +711,7 @@ export default function UpdatePage() {
 
           <input
             className="container"
-            type="text"
+            type="file"
             class="form-control"
             id="select image"
             value={formData?.preview_image}
@@ -732,9 +732,9 @@ export default function UpdatePage() {
             type="email"
             class="form-control"
             id="Youtube"
-            value={formData?.demo_video}
-            placeholder="Enter a YouTube or Vimeo URL."
             name="demo_video"
+            value={formData?.demo_video}
+            placeholder="Enter a YouTube or Video URL."
             onChange={handleChange}
           />
         </div>
