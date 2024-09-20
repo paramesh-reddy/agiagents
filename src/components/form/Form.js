@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Form.css";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
+import PrepLoader from "../prep-loader/loader";
 export default function SubmitPage() {
   const [formData, setFormData] = useState({
     // tagline: "",
@@ -23,6 +24,7 @@ export default function SubmitPage() {
     name: "",
     website_url: "",
   });
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const navigate = useNavigate();
   // Handle form input changes
@@ -34,18 +36,49 @@ export default function SubmitPage() {
     }));
   };
 
-  const handleCreate = async (e) => {
-    console.log("heyuu");
-    e.preventDefault();
+  const uploadToCloudinary = async (file) => {
+    const cloudName = "dnrvz201s"; // Replace with your Cloudinary cloud name
+    const uploadPreset = "cfbnzkaa"; // Replace with your Cloudinary upload preset
 
-    const formBody = new FormData();
-    Object.keys(formData).forEach((key) => {
-      formBody.append(key, formData[key]);
-    });
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
 
     try {
       const response = await axios.post(
-        "http://54.253.162.126:4001/api/agents_create",
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        formData
+      );
+      return response.data.secure_url; // Cloudinary URL of the uploaded image
+    } catch (error) {
+      console.error("Error uploading to Cloudinary:", error);
+      throw error;
+    }
+  };
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      // Upload Logo and Preview Image to Cloudinary
+      const logoUrl = await uploadToCloudinary(formData.logo);
+      const previewImageUrl = await uploadToCloudinary(formData.preview_image);
+
+      // Update formData with Cloudinary URLs
+      const updatedFormData = {
+        ...formData,
+        logo: logoUrl,
+        preview_image: previewImageUrl,
+      };
+
+      // Submit form with Cloudinary URLs to your API
+      const formBody = new FormData();
+      Object.keys(updatedFormData).forEach((key) => {
+        formBody.append(key, updatedFormData[key]);
+      });
+
+      const response = await axios.post(
+        "http://54.253.162.126:4001/api/agents_create", // Your existing API endpoint
         formBody,
         {
           headers: {
@@ -53,18 +86,17 @@ export default function SubmitPage() {
           },
         }
       );
+
       console.log("Success:", response.data);
 
-      // if (response.data === "Success") {
-      //   localStorage.setItem("user-email", formData.email);
-      //   window.open("index3.html");
-      // } else {
-      //   alert("Please enter the correct data!");
-
+      // Navigate to a different page if needed
       navigate("/");
+
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while submitting the form.");
+    } finally {
+      setIsLoading(false); // End loading
     }
   };
 
@@ -643,39 +675,33 @@ export default function SubmitPage() {
           />
         </div>
       </div>
-      <div className="input-container">
-        <div style={{ width: "20%" }}>
-          <label className="hi" for="Ai Agent">
-            AI Agent Logo(URL)
+      <div className="ai-agent-input-container">
+        <div className="ai-agent-input-group">
+          <label className="ai-agent-label" htmlFor="logo">
+            AI Agent Logo (URL)
           </label>
-
           <input
-            className="container"
-            type="email"
-            class="form-control"
-            id="select image"
-            placeholder="Logo"
+            className="ai-agent-input"
+            type="file" // Change to file input for image upload
+            id="logo"
             name="logo"
-            onChange={handleChange}
+            onChange={(e) => setFormData({ ...formData, logo: e.target.files[0] })}
           />
         </div>
-        <div style={{ width: "20%" }}>
-          <label className="hi" for="Ai Agent">
-            {" "}
-            AI Agent Screenshot(URl)
+        <div className="ai-agent-input-group">
+          <label className="ai-agent-label" htmlFor="preview_image">
+            AI Agent Screenshot (URL)
           </label>
-
           <input
-            className="container"
-            type="email"
-            class="form-control"
-            id="select image"
-            placeholder="Preview Image"
+            className="ai-agent-input"
+            type="file" // Change to file input for image upload
+            id="preview_image"
             name="preview_image"
-            onChange={handleChange}
+            onChange={(e) => setFormData({ ...formData, preview_image: e.target.files[0] })}
           />
         </div>
       </div>
+
       <div className="input-container">
         <div style={{ width: "100%" }}>
           <label className="hi" for="Ai Agent">
@@ -693,9 +719,17 @@ export default function SubmitPage() {
           />
         </div>
       </div>
-      <button className="Onclick" onClick={(e) => handleCreate(e)}>
-        Submit AI Agent
+      <button
+        className="Onclick"
+        onClick={(e) => handleCreate(e)}
+        disabled={isLoading} // Disable button while loading
+      >
+        {isLoading ? "Submitting..." : "Submit AI Agent"} {/* Change button text */}
       </button>
+
+      {isLoading && (
+        <div className="loader"><PrepLoader /></div> // Display loader when loading
+      )}
     </div>
   );
 }

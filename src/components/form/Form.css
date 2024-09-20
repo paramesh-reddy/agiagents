@@ -65,3 +65,50 @@ textarea:focus {
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
     background-color: #fff;
 }
+
+
+.ai-agent-input-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Space between the fields */
+    width: 100%; /* Full width of the container */
+    margin-bottom: 20px;
+  }
+  
+  .ai-agent-input-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%; /* Each input group takes up 48% of the available width */
+  }
+  
+  .ai-agent-label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .ai-agent-input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  .ai-agent-input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .ai-agent-input-container {
+      flex-direction: column; /* Stack inputs vertically on smaller screens */
+    }
+  
+    .ai-agent-input-group {
+      width: 100%; /* Full width for each input group */
+    }
+  }
+  

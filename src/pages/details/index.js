@@ -35,7 +35,7 @@ const DetailPage = () => {
     }, []);
     console.log(agent)
     if (!agent) {
-        return <div style={{display:'display',justifyContent:'center',alignItems:'center',height:'100vh'}}><PrepLoader /></div>; // Show a loading state while fetching data
+        return <div style={{ display: 'display', justifyContent: 'center', alignItems: 'center', height: '100vh' }}><PrepLoader /></div>; // Show a loading state while fetching data
     }
     return (
         <div className="detail-container">
@@ -65,8 +65,8 @@ const DetailPage = () => {
                 <h2>Description:</h2>
                 <p>{agent?.description}</p>
             </div>
-                      {/*tags Section */}
-                      <div className="detail-section section-border">
+            {/*tags Section */}
+            <div className="detail-section section-border">
                 <h2>Tags </h2>
                 <p>{agent?.tag}</p>
             </div>
@@ -91,8 +91,8 @@ const DetailPage = () => {
                     ))}
                 </ul>
             </div> */}
-                  {/*tagline Section */}
-                  <div className="detail-section section-border">
+            {/*tagline Section */}
+            <div className="detail-section section-border">
                 <h2>Tagline </h2>
                 <p>{agent.tagline}</p>
             </div>
@@ -100,13 +100,13 @@ const DetailPage = () => {
             {/* AI Agent Details Section */}
             <div className="detail-section section-border">
                 <h2>AI Agent Details</h2>
-                <div className="agent-details">  
+                <div className="agent-details">
                     <p> <FaUser className="icon" /><strong>Created by:</strong> {agent?.details?.created_by}</p>
                     <p><FaTag className="icon" /> <strong>Category:</strong> {agent?.details?.category}</p>
                     <p><FaLock className="icon" /><strong>Access:</strong> {agent?.details?.access}</p>
                     <p><FaIndustry className="icon" /><strong>Industry:</strong> {agent?.details?.industry}</p>
                     <p> <FaDollarSign className="icon" /><strong>Pricing Model:</strong> {agent?.details?.pricing}</p>
-                   
+
                     <p><FaCalendarAlt className="icon" /><strong>Date Added:</strong> {new Date(agent.details.date_added).toLocaleDateString()}</p>
                 </div>
             </div>
@@ -126,18 +126,18 @@ const DetailPage = () => {
             <div className="detail-section section-border">
                 <h2>DemoVideo</h2>
                 <iframe
-                  
+
                     className="demo_video"
                     width="100%"
                     height="500"
-                     name='demo_video'
-                    src= {agent?.details?.demo_video || "https://www.youtube.com/embed/dQw4w9WgXcQ"} // Replace with the actual video link
+                    name='demo_video'
+                    src={agent?.details?.demo_video || "https://www.youtube.com/embed/dQw4w9WgXcQ"} // Replace with the actual video link
                     title="Phonely AI Demo Video"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                 ></iframe>
-                
+
             </div>
         </div>
     );
