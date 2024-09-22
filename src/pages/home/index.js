@@ -9,6 +9,7 @@ import img6 from "../../Assets/icon6.png";
 import img7 from "../../Assets/icon2.png";
 import img8 from "../../Assets/icon8.png";
 import img9 from "../../Assets/icon9.png";
+import ChildCard from "../../components/ChildCard";
 import { useNavigate } from "react-router-dom";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faFreeCodeCamp, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
@@ -40,7 +41,7 @@ export default function Home() {
     "Research",
     "Content Creation",
     " Data Analysis",
-    "Productivity",
+
     "Customer Service",
     "Transition",
     "AI Agents Builder",
@@ -77,7 +78,8 @@ export default function Home() {
     console.log("Effect ran when component mounted or likes changed");
   }, [likes]); // Add the necessary dependencies
 
-  const handleLike = () => {
+  const handleLike = (e) => {
+    e.stopPropagation();
     setLikes(likes + 1); // Example logic for incrementing likes
   };
 
@@ -290,45 +292,50 @@ export default function Home() {
             </div>
           ) : (
             <div className="agents-list">
-              {agents.map((agent) => (
-                <div
-                  className="agent-card"
-                  key={agent.id}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => navigate(`/detail?${agent.id}`)}
-                >
-                  <img
-                    src={agent.img}
-                    alt={agent.name}
-                    className="agent-image"
-                  />
-                  <div className="agent-info">
-                    <h3>{agent.name}</h3>
-                    <p>{agent.description}</p>
-                    {/* <div className="tags">
+              {agents.map((agent) => {
+                return (
+                  <div>
+                    {/* <ChildCard/> */}
+                    <div
+                      className="agent-card"
+                      key={agent.id}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate(`/detail?${agent.id}`)}
+                    >
+                      <img
+                        src={agent?.logo}
+                        alt={agent.name}
+                        className="agent-image"
+                      />
+                      <div className="agent-info">
+                        <h3>{agent.name}</h3>
+                        <p>{agent.description}</p>
+                        {/* <div className="tags">
                       <span className="tag free">{agent?.pricing_model}</span>
                       <span className="tag paid">{agent?.category}</span>
                     </div> */}
-                    <div>
-                      <span className="tag free">
-                        <FaFreeCodeCamp /> {agent?.pricing_model}
-                      </span>
-                      <span className="turn">
-                        <FaMoneyBillAlt /> {agent?.category}
-                      </span>
+                        <div>
+                          <span className="tag free">
+                            <FaFreeCodeCamp /> {agent?.pricing_model}
+                          </span>
+                          <span className="turn">
+                            <FaMoneyBillAlt /> {agent?.category}
+                          </span>
 
-                      {/* Like button with like count */}
-                      <span
-                        className="likes"
-                        onClick={handleLike}
-                        style={{ cursor: "pointer", marginLeft: "7px" }}
-                      >
-                        <FaThumbsUp /> {likes}
-                      </span>
+                          {/* Like button with like count */}
+                          <span
+                            className="likes"
+                            onClick={handleLike}
+                            style={{ cursor: "pointer", marginLeft: "7px" }}
+                          >
+                            <FaThumbsUp /> {likes}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

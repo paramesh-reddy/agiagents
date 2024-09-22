@@ -195,7 +195,7 @@ const DetailPage = () => {
           width="100%"
           height="500"
           name="demo_video"
-          src={agent?.demo_video} // Replace with actual video link
+          src= {agent?.demo_video || "https://www.youtube.com/embed/dQw4w9WgXcQ"} // Replace with actual video link
           title="Phonely AI Demo Video"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
