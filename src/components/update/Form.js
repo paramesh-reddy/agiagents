@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Form.css";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
+import PrepLoader from "../prep-loader/loader";
 export default function UpdatePage() {
   const [formData, setFormData] = useState({
-     tagline: "",
+    tagline: "",
     likes: "",
-     overview: "",
+    overview: "",
     key_features: "",
     use_cases: "",
     created_by: "",
@@ -23,7 +24,7 @@ export default function UpdatePage() {
     name: "",
     website_url: "",
   });
-
+  const [isLoading, setIsLoading] = useState(false); // Loading state
   const navigate = useNavigate();
   // Handle form input changes
   const handleChange = (e) => {
@@ -34,6 +35,26 @@ export default function UpdatePage() {
     }));
   };
 
+  const uploadToCloudinary = async (file) => {
+    const cloudName = "dnrvz201s"; // Replace with your Cloudinary cloud name
+    const uploadPreset = "cfbnzkaa"; // Replace with your Cloudinary upload preset
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        formData
+      );
+      return response.data.secure_url; // Cloudinary URL of the uploaded image
+    } catch (error) {
+      console.error("Error uploading to Cloudinary:", error);
+      throw error;
+    }
+  };
+
   const handleCreate = async (e) => {
     console.log("heyuu");
     e.preventDefault();
@@ -42,12 +63,21 @@ export default function UpdatePage() {
     Object.keys(formData).forEach((key) => {
       formBody.append(key, formData[key]);
     });
-
+    setIsLoading(true);
     try {
+      const logoUrl = await uploadToCloudinary(formData.logo);
+      // const previewImageUrl = await uploadToCloudinary(formData.preview_image);
+
+      // Update formData with Cloudinary URLs
+      const updatedFormData = {
+        ...formData,
+        logo: logoUrl,
+        // preview_image: previewImageUrl,
+      };
       const agentId = getAgentIdFromURL();
       const response = await axios.post(
         `http://54.253.162.126:4001/api/agent/${agentId}/modify/`,
-        formBody,
+        updatedFormData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -55,7 +85,7 @@ export default function UpdatePage() {
         }
       );
       console.log("Success:", response.data);
-
+      alert("successfully completed."); // You can customize this message
       // if (response.data === "Success") {
       //   localStorage.setItem("user-email", formData.email);
       //   window.open("index3.html");
@@ -66,6 +96,8 @@ export default function UpdatePage() {
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while Updating the form.");
+    } finally {
+      setIsLoading(false); // End loading
     }
   };
   const getAgentIdFromURL = () => {
@@ -122,7 +154,7 @@ export default function UpdatePage() {
         <div className="input-container">
           <div style={{ width: "50%" }}>
             <label className="hi" for="Ai Agent">
-              AI Agent Name*
+              AI Agent Name <span className="star">*</span>
             </label>
 
             <input
@@ -138,7 +170,7 @@ export default function UpdatePage() {
           </div>
           <div style={{ width: "50%" }}>
             <label className="hi" for="Ai Agent">
-              Created By*
+              Created By <span className="star">*</span>
             </label>
 
             <input
@@ -156,7 +188,7 @@ export default function UpdatePage() {
         <div className="input-container2">
           <div style={{ width: "50%" }}>
             <label className="hi" for="Ai Agent">
-              Website URL*
+              Website URL <span className="star">*</span>
             </label>
 
             <input
@@ -191,7 +223,7 @@ export default function UpdatePage() {
         <div className="check-box1">
           <div>
             <label className="hi" htmlFor="accessModel">
-              Access Model*
+              Access Model <span className="star">*</span>
             </label>
             <div className="form-check">
               <input
@@ -199,8 +231,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="access"
                 id="flexRadioDefault1"
-                value="openSource"
-                checked={formData?.access === "openSource"}
+                value="Open Source"
+                checked={formData?.access === "Open Source"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault1">
@@ -213,8 +245,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="access"
                 id="flexRadioDefault2"
-                value="closedSource"
-                checked={formData?.access === "closedSource"}
+                value="Closed Source"
+                checked={formData?.access === "Closed Source"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault2">
@@ -227,8 +259,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="access"
                 id="flexRadioDefault3"
-                value="api"
-                checked={formData?.access === "api"}
+                value="API"
+                checked={formData?.access === "API"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault3">
@@ -239,7 +271,7 @@ export default function UpdatePage() {
           <br />
           <div>
             <label className="hi" htmlFor="pricingModel">
-              Pricing Model*
+              Pricing Model <span className="star">*</span>
             </label>
             <div className="form-check">
               <input
@@ -247,8 +279,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="pricing"
                 id="flexRadioDefault4"
-                value="free"
-                checked={formData?.pricing === "free"}
+                value="Free"
+                checked={formData?.pricing === "Free"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault4">
@@ -261,8 +293,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="pricing"
                 id="flexRadioDefault5"
-                value="freemium"
-                checked={formData?.pricing === "freemium"}
+                value="Freemium"
+                checked={formData?.pricing === "Freemium"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault5">
@@ -275,8 +307,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="pricing"
                 id="flexRadioDefault6"
-                value="paid"
-                checked={formData?.pricing === "paid"}
+                value="Paid"
+                checked={formData?.pricing === "Paid"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault6">
@@ -289,7 +321,7 @@ export default function UpdatePage() {
         <div className="check-box2">
           <div>
             <label className="hi" htmlFor="category">
-              Category*
+              Category <span className="star">*</span>
             </label>
             <div className="form-check">
               <input
@@ -297,8 +329,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault7"
-                value="personalAssistant"
-                checked={formData?.category === "personalAssistant"}
+                value="Personal Assistant"
+                checked={formData?.category === "Personal Assistant"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault7">
@@ -311,8 +343,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault8"
-                value="dataAnalysis"
-                checked={formData?.category === "dataAnalysis"}
+                value="Data Analysis"
+                checked={formData?.category === "Data Analysis"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault8">
@@ -325,8 +357,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault9"
-                value="research"
-                checked={formData?.category === "research"}
+                value="Research"
+                checked={formData?.category === "Research"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault9">
@@ -339,8 +371,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault10"
-                value="digitalWorkers"
-                checked={formData?.category === "digitalWorkers"}
+                value="Digital Workers"
+                checked={formData?.category === "Digital Workers"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault10">
@@ -356,8 +388,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault11"
-                value="productivity"
-                checked={formData?.category === "productivity"}
+                value="Productivity"
+                checked={formData?.category === "Productivity"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault11">
@@ -371,7 +403,7 @@ export default function UpdatePage() {
                 name="category"
                 id="flexRadioDefault12"
                 value="customerService"
-                checked={formData?.category === "customerService"}
+                checked={formData?.category === "Customer Service"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault12">
@@ -384,8 +416,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault13"
-                value="transition"
-                checked={formData?.category === "transition"}
+                value="Transition"
+                checked={formData?.category === "Transition"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault13">
@@ -398,8 +430,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault14"
-                value="aiAgentsBuilder"
-                checked={formData?.category === "aiAgentsBuilder"}
+                value="AI Agents Builder"
+                checked={formData?.category === "AI Agents Builder"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault14">
@@ -414,8 +446,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault15"
-                value="contentCreation"
-                checked={formData?.category === "contentCreation"}
+                value="Content Creation"
+                checked={formData?.category === "Content Creation"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault15">
@@ -428,8 +460,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault16"
-                value="coding"
-                checked={formData?.category === "coding"}
+                value="Coding"
+                checked={formData?.category === "Coding"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault16">
@@ -442,8 +474,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault17"
-                value="workFlow"
-                checked={formData.category === "workFlow"}
+                value="WorkFlow"
+                checked={formData.category === "WorkFlow"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault17">
@@ -456,8 +488,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="category"
                 id="flexRadioDefault18"
-                value="other"
-                checked={formData?.category === "other"}
+                value="Other"
+                checked={formData?.category === "Other"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault18">
@@ -470,7 +502,7 @@ export default function UpdatePage() {
         <div className="check-box3">
           <div>
             <label className="hi" htmlFor="industry">
-              Industry*
+              Industry <span className="star">*</span>
             </label>
             <div className="form-check">
               <input
@@ -478,8 +510,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="industry"
                 id="flexRadioDefault19"
-                value="fintech"
-                checked={formData?.industry === "fintech"}
+                value="Fintech"
+                checked={formData?.industry === "Fintech"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault19">
@@ -492,8 +524,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="industry"
                 id="flexRadioDefault20"
-                value="healthcare"
-                checked={formData?.industry === "healthcare"}
+                value="Healthcare"
+                checked={formData?.industry === "Healthcare"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault20">
@@ -506,8 +538,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="industry"
                 id="flexRadioDefault21"
-                value="retail"
-                checked={formData?.industry === "retail"}
+                value="Retail"
+                checked={formData?.industry === "Retail"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault21">
@@ -520,8 +552,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="industry"
                 id="flexRadioDefault22"
-                value="education"
-                checked={formData?.industry === "education"}
+                value="Education"
+                checked={formData?.industry === "Education"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault22">
@@ -534,8 +566,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="industry"
                 id="flexRadioDefault23"
-                value="transportation"
-                checked={formData?.industry === "transportation"}
+                value="Transportation"
+                checked={formData?.industry === "Transportation"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault23">
@@ -551,8 +583,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="industry"
                 id="flexRadioDefault24"
-                value="government"
-                checked={formData?.industry === "government"}
+                value="Government"
+                checked={formData?.industry === "Government"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault24">
@@ -579,8 +611,8 @@ export default function UpdatePage() {
                 type="radio"
                 name="industry"
                 id="flexRadioDefault26"
-                value="media"
-                checked={formData?.industry === "media"}
+                value="Media"
+                checked={formData?.industry === "Media"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault26">
@@ -622,7 +654,9 @@ export default function UpdatePage() {
 
       <div className="tagline">
         <p>
-          <label className="hi">Tagline*</label>
+          <label className="hi">
+            Tagline <span className="star">*</span>
+          </label>
         </p>
         <textarea
           id="tagline"
@@ -635,7 +669,9 @@ export default function UpdatePage() {
       </div>
 
       <div>
-        <label className="hi">Description*</label>
+        <label className="hi">
+          Description <span className="star">*</span>
+        </label>
         <textarea
           id="discription"
           placeholder="Briefly describe your AI Agent, the description is used on your AI Agent page ."
@@ -668,7 +704,7 @@ export default function UpdatePage() {
       </div> */}
 
       <div className="input-container">
-        <div style={{ width: "100%" }}>
+         {/* <div style={{ width: "100%" }}>
           <label className="hi" for="Ai Agent">
             Tags
           </label>
@@ -684,42 +720,41 @@ export default function UpdatePage() {
             placeholder="Enter comma-seperated tags."
             onChange={handleChange}
           />
-        </div>
-      </div>
-      <div className="input-container">
-        <div style={{ width: "20%" }}>
-          <label className="hi" for="Ai Agent">
-            AI Agent Logo(URL)
-          </label>
+            
 
+      </div> */}
+      <div className="ai-agent-input-container">
+        <div className="ai-agent-input-group">
+          <label className="ai-agent-label" htmlFor="logo">
+            AI Agent Logo   <span className="star">*</span> (URL)
+          </label>
           <input
-            className="container"
-            type="email"
-            value={formData?.logo}
-            class="form-control"
-            id="select image"
-            placeholder="select"
+            className="ai-agent-input"
+            type="file" // Change to file input for image upload
+            id="logo"
             name="logo"
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormData({ ...formData, logo: e.target.files[0] })
+            }
           />
         </div>
-        <div style={{ width: "20%" }}>
-          <label className="hi" for="Ai Agent">
-            {" "}
-            AI Agent Screenshot(URl)
+        
+        
+        </div>
+        {/* <div className="ai-agent-input-group">
+          <label className="ai-agent-label" htmlFor="preview_image">
+            AI Agent Screenshot   <span className="star">*</span> (URL)
           </label>
-
           <input
-            className="container"
-            type="text"
-            class="form-control"
-            id="select image"
-            value={formData?.preview_image}
-            placeholder="select Image"
+            className="ai-agent-input"
+            type="file" // Change to file input for image upload
+            id="preview_image"
             name="preview_image"
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormData({ ...formData?, preview_image: e.target.files[0] })
+            }
           />
-        </div>
+        </div>  */}
       </div>
       <div className="input-container">
         <div style={{ width: "100%" }}>
@@ -739,10 +774,20 @@ export default function UpdatePage() {
           />
         </div>
       </div>
-      <button className="Onclick" onClick={(e) => handleCreate(e)}>
-        {" "}
-        Update AI Agent
+      <button
+        className="Onclick"
+        onClick={(e) => handleCreate(e)}
+        disabled={isLoading} // Disable button while loading
+      >
+        {isLoading ? "Submitting..." : "Submit AI Agent"}{" "}
+        {/* Change button text */}
       </button>
+
+      {isLoading && (
+        <div className="loader">
+          <PrepLoader />
+        </div> // Display loader when loading
+      )}
     </div>
   );
 }

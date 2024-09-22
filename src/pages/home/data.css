@@ -1,241 +1,253 @@
 /* Desktop Styles (Unchanged) */
 .container-data {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color:rgb(128, 128, 210);
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: rgb(128, 128, 210);
 }
 
 .explore {
-    font-size: 2em;
-    margin-bottom: 10px;
-    color:white;
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: white;
 }
 
 .list {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    color:white;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: white;
 }
 
 .input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .filter-container {
-    display: flex;
+  display: flex;
 }
 
 .filter-section {
-    width: 25%;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-right: 1px solid #ddd;
-    border-top: 1px solid #ddd;
-    box-sizing: border-box;
+  width: 25%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 .filter-section h3 {
-    margin-bottom: 20px;
-    color: #333;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .filter-section h4 {
-    margin-top: 20px;
-    color: #333;
+  margin-top: 20px;
+  color: #333;
 }
 
 .filter-search {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .checkbox-group label {
-    display: block;
-    margin-bottom: 10px;
-    color: #555;
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
 }
 
 .agents-section {
-    width: 75%;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 75%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .agents-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .view-switch {
-    display: flex;
+  display: flex;
 }
 
 .view-button {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    margin-right: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #333;
 }
 
 .view-button.active {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }
 
 .sort-select {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .agents-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .agent-card {
-    display: flex;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    align-items: center;
+  display: flex;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
 }
 
 .agent-image {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-    border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 .agent-info {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 70px);
 }
 
 .agent-info h3 {
-    margin: 0;
-    font-size: 1.2em;
-    color: #333;
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
 }
 
 .agent-info p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #666;
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #666;
 }
 
 .tags {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .tag {
-    margin-right: 10px;
-    padding: 2px 5px;
-    border-radius: 5px;
-    font-size: 0.8em;
+  margin-right: 10px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 0.8em;
 }
 
 .tag.freemium {
-    background-color: #e7f3ff;
-    color: #007bff;
+  background-color: #e7f3ff;
+  color: #007bff;
 }
 
 .tag.free {
-    background-color: #e7ffed;
-    color: #28a745;
+  background-color: #e4f3e8;
+  color: rgb(56, 56, 238);
 }
 
+.tag paid {
+  background-color: tomato;
+  color: #da3535;
+}
 .tag.category {
-    background-color: #ffe7e7;
-    color: #dc3545;
+  background-color: #ffe7e7;
+  color: #fabec4;
+  
 }
+.turn {
+  background-color: #ddd8d8;
+  padding: 6px;
+  border-radius: 7px;
+  color: #ab4646;
 
+}
 .tag.likes {
-    background-color: #fff5e7;
-    color: #ffc107;
+  background-color: #fff5e7;
+  color: #ffc107;
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-    .filter-container {
-        flex-direction: column;
-    }
+  .filter-container {
+    flex-direction: column;
+  }
 
-    .filter-section {
-        width: 100%;
-        margin-bottom: 20px;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
-    }
+  .filter-section {
+    width: 100%;
+    margin-bottom: 20px;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
 
-    .agents-section {
-        width: 100%;
-    }
+  .agents-section {
+    width: 100%;
+  }
 
-    .agents-list {
-        grid-template-columns: 1fr;
-    }
+  .agents-list {
+    grid-template-columns: 1fr;
+  }
 
-    .agent-card {
-        flex-direction: row; /* Keep image and text side by side */
-        align-items: center;
-    }
+  .agent-card {
+    flex-direction: row; /* Keep image and text side by side */
+    align-items: center;
+  }
 
-    .agent-image {
-        width: 50px;
-        height: 50px;
-        margin-right: 15px;
-        margin-bottom: 0; /* Remove bottom margin */
-    }
+  .agent-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    margin-bottom: 0; /* Remove bottom margin */
+  }
 
-    .agent-info {
-        width: calc(100% - 70px);
-    }
+  .agent-info {
+    width: calc(100% - 70px);
+  }
 
-    .explore {
-        font-size: 1.5em;
-        text-align: center;
-    }
+  .explore {
+    font-size: 1.5em;
+    text-align: center;
+  }
 
-    .list {
-        font-size: 1em;
-        text-align: center;
-    }
+  .list {
+    font-size: 1em;
+    text-align: center;
+  }
 
-    .input {
-        width: 100%;
-    }
+  .input {
+    width: 100%;
+  }
 
-    .view-switch, .sort-dropdown {
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 10px;
-    }
+  .view-switch,
+  .sort-dropdown {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
-    .view-button {
-        flex: 1;
-    }
+  .view-button {
+    flex: 1;
+  }
 }

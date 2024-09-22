@@ -111,4 +111,6 @@ textarea:focus {
       width: 100%; /* Full width for each input group */
     }
   }
-  
+  .star{
+    color: rgb(252, 178, 178);
+  }
