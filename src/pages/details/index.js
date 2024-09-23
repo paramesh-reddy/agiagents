@@ -54,6 +54,7 @@ const DetailPage = () => {
     ); // Show a loading state while fetching data
   }
   return (
+    <div className="total-container">
     <div className="detail-container">
       <button className="back-button" onClick={() => navigate("/")}>
         ← Back to Directory
@@ -202,6 +203,7 @@ const DetailPage = () => {
           allowFullScreen
         ></iframe>
       </div>
+    </div>
     </div>
   );
 };
