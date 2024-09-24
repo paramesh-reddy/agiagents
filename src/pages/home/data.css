@@ -16,7 +16,9 @@
   margin-bottom: 20px;
   color: white;
 }
-
+.All{
+margin-left: 20px;
+}
 .input {
   width: 100%;
   padding: 10px;
@@ -182,6 +184,7 @@
   padding: 6px;
   border-radius: 7px;
   color: #ab4646;
+  margin-left:5px;
 
 }
 .tag.likes {
@@ -250,4 +253,7 @@
   .view-button {
     flex: 1;
   }
+}
+.huu{
+  margin-left: px;
 }

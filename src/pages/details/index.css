@@ -55,7 +55,7 @@
 .tags {
   display: flex;
   gap: 10px;
-  margin-top: 30px;
+  margin-top: 10px;
   font-weight: 700;
 }
 
@@ -71,8 +71,8 @@
   width: 23px;
 }
 .visit-website-button {
-  margin-top: 50px;
-  margin-left: -70px;
+  margin-top: 30px;
+  margin-left: -90px;
   border-color: rgb(35, 164, 35);
 }
 .visit-website-button i {
@@ -99,7 +99,6 @@
   background-color: white;
   color: black;
   padding: 20px;
-  
 }
 .agent {
   font-weight: 700px;
@@ -114,7 +113,7 @@
   padding: 30px;
   border-radius: 17px; /* Optional: rounded corners */
   margin-bottom: 20px; /* Space between sections */
-  margin-top:27px
+  margin-top: 27px;
 }
 
 .demo {

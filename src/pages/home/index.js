@@ -134,7 +134,7 @@ export default function Home() {
           : "";
 
         const response = await fetch(
-          `http://54.253.162.126:4001/api/agent_list${queryString}`
+          `http://13.215.228.42:4001//api/agent_list${queryString}`
         );
         const data = await response.json();
 
@@ -157,7 +157,7 @@ export default function Home() {
           author: agent[14],
           visibility: agent[15],
           tags: agent[16],
-          // logo: agent[19]?.replace(/"/g, ""),
+
           preview_image: agent[17]?.replace(/"/g, ""),
           demo_video: agent[18]?.replace(/"/g, ""),
           img: images[agent[0] % images.length],
@@ -217,14 +217,19 @@ export default function Home() {
               value={categorySearch}
               onChange={handleCategorySearchChange}
             />
+            <div>
+              <input type="checkBox" />
+              <label className="All">ALL</label>
+            </div>
+
             <div
               className="checkbox-group"
               style={{ height: "200px", overflow: "auto" }}
             >
               {filteredCategories.map((category, index) => (
-                <label key={index} style={{ display: "flex", gap: "4px" }}>
+                <label key={index} style={{ display: "flex", gap: "6px" }}>
                   <input
-                    type="checkbox"
+                    type="checkBox"
                     checked={selectedCategories.includes(category)}
                     onChange={() => handleCategoryCheckboxChange(category)}
                   />
@@ -243,14 +248,18 @@ export default function Home() {
               value={industrySearch}
               onChange={handleIndustrySearchChange}
             />
+            <div>
+              <input type="checkbox" />
+              <label className="All">ALL</label>
+            </div>
             <div
               className="checkbox-group"
-              style={{ height: "200px", overflow: "auto" }}
+              style={{ height: "220px", overflow: "auto", gap: "6px" }}
             >
               {filteredIndustries.map((industry, index) => (
                 <label key={index}>
                   <input
-                    type="checkbox"
+                    type="checkBox"
                     checked={selectedIndustries.includes(industry)}
                     onChange={() => handleIndustryCheckboxChange(industry)}
                   />
@@ -293,48 +302,7 @@ export default function Home() {
           ) : (
             <div className="agents-list">
               {agents.map((agent) => {
-                return (
-                  <div>
-                    {/* <ChildCard/> */}
-                    <div
-                      className="agent-card"
-                      key={agent.id}
-                      style={{ cursor: "pointer" }}
-                      onClick={() => navigate(`/detail?${agent.id}`)}
-                    >
-                      <img
-                        src={agent?.logo}
-                        alt={agent.name}
-                        className="agent-image"
-                      />
-                      <div className="agent-info">
-                        <h3>{agent.name}</h3>
-                        <p>{agent.description}</p>
-                        {/* <div className="tags">
-                      <span className="tag free">{agent?.pricing_model}</span>
-                      <span className="tag paid">{agent?.category}</span>
-                    </div> */}
-                        <div>
-                          <span className="tag free">
-                            <FaFreeCodeCamp /> {agent?.pricing_model}
-                          </span>
-                          <span className="turn">
-                            <FaMoneyBillAlt /> {agent?.category}
-                          </span>
-
-                          {/* Like button with like count */}
-                          <span
-                            className="likes"
-                            onClick={handleLike}
-                            style={{ cursor: "pointer", marginLeft: "7px" }}
-                          >
-                            <FaThumbsUp /> {likes}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
+                return <ChildCard agent={agent} navigate={navigate} />;
               })}
             </div>
           )}

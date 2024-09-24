@@ -77,7 +77,7 @@ export default function UpdatePage() {
       };
       const agentId = getAgentIdFromURL();
       const response = await axios.post(
-        `http://54.253.162.126:4001/api/agent/${agentId}/modify/`,
+        `http://13.215.228.42:4001//api/agent/${agentId}/modify/`,
         updatedFormData,
         {
           headers: {
@@ -114,7 +114,7 @@ export default function UpdatePage() {
       const agentId = getAgentIdFromURL();
       try {
         const response = await fetch(
-          `http://54.253.162.126:4001/api/agents_detail/${agentId}`
+          `http://13.215.228.42:4001//api/agents_detail/${agentId}`
         );
         const data = await response.json();
         const finalData = {
@@ -826,7 +826,7 @@ export default function UpdatePage() {
           <div>
             <h3>Uploaded AI Agent Logo:</h3>
             <img
-              src={logo}
+              src={ formData?.logo}
               alt="AI Agent Logo"
               style={{ width: "150px", height: "150px" }}
             />

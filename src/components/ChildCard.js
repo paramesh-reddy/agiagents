@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { FaFreeCodeCamp, FaMoneyBillAlt, FaThumbsUp } from "react-icons/fa";
 // import PropTypes from 'prop-types';
-
 
 const ChildCard = ({ agent, navigate, logo }) => {
   const [likes, setLikes] = useState(0);
@@ -17,9 +17,8 @@ const ChildCard = ({ agent, navigate, logo }) => {
     e.stopPropagation();
     setLikes(likes + 1); // Example logic for incrementing likes
   };
-//   console.log("Agent Data:", agentData);
-//   <ChildCard agent={agentData} navigate={navigateFunction} logo={logoImage} />
-  
+  //   console.log("Agent Data:", agentData);
+  //   <ChildCard agent={agentData} navigate={navigateFunction} logo={logoImage} />
 
   return (
     <div
@@ -28,7 +27,7 @@ const ChildCard = ({ agent, navigate, logo }) => {
       style={{ cursor: "pointer" }}
       onClick={() => navigate(`/detail?${agent.id}`)}
     >
-      <img src={logo} alt={agent.name} className="agent-image" />
+      <img src={agent?.logo} alt={""} className="agent-image" />
       <div className="agent-info">
         <h3>{agent.name}</h3>
         <p>{agent.description}</p>
@@ -46,9 +45,9 @@ const ChildCard = ({ agent, navigate, logo }) => {
 
           {/* Like button with like count */}
           <span
-            className="likes"
+            className="hello"
             onClick={handleLike}
-            style={{ cursor: "pointer", marginLeft: "7px" }}
+            style={{ cursor: "pointer", marginLeft: "7px",marginLeft:'17px' }}
           >
             <FaThumbsUp /> {likes}
           </span>
