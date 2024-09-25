@@ -129,11 +129,11 @@ const DetailPage = () => {
                     ))}
                 </ul>
             </div> */}
-        {/*tagline Section */}
+        {/* tagline Section
         <div className="detail-section section-border">
           <h2>Tagline </h2>
           <p>{agent.tagline}</p>
-        </div>
+        </div> */}
 
         {/* AI Agent Details Section */}
         <div className="detail-section section-border">
@@ -144,36 +144,36 @@ const DetailPage = () => {
                 {" "}
                 <FaUser className="icon" />
                 <strong className="New">Created by:</strong>{" "}
-                {agent?.details?.created_by}
+                <div className="hiii"> {agent?.details?.created_by}</div>
               </p>
               <p>
                 <FaTag className="icon" />{" "}
                 <strong className="New">Category:</strong>{" "}
-                {agent?.details?.category}
+                <dvi className="hiii"> {agent?.details?.category}</dvi>
               </p>
               <p>
                 <FaLock className="icon" />
                 <strong className="New">Access:</strong>{" "}
-                {agent?.details?.access}
+                <div className="hiii"> {agent?.details?.access}</div>
               </p>
             </div>
             <div>
               <p>
                 <FaIndustry className="icon" />
                 <strong className="New">Industry:</strong>{" "}
-                {agent?.details?.industry}
+                <div className="hiii"> {agent?.details?.industry}</div>
               </p>
               <p>
                 {" "}
                 <FaDollarSign className="icon" />
                 <strong className="New">Pricing Model:</strong>{" "}
-                {agent?.details?.pricing}
+                <div className="hiii"> {agent?.details?.pricing}</div>
               </p>
 
               <p>
                 <FaCalendarAlt className="icon" />
                 <strong className="New">Date Created:</strong>
-                {agent?.details?.date_added}
+                <div className="hiii"> {agent?.details?.date_added}</div>
               </p>
             </div>{" "}
           </div>

@@ -9,7 +9,13 @@
     text-align: center;
 }
 
-.hi {
+.hi{
+    font-weight: bold;
+    /* margin:12px; */
+    margin:7px;
+}
+.hi1{
+    margin:20px;
     font-weight: bold;
 }
 

@@ -157,6 +157,7 @@ export default function Home() {
           author: agent[14],
           visibility: agent[15],
           tags: agent[16],
+          logo:agent[18],
 
           preview_image: agent[17]?.replace(/"/g, ""),
           demo_video: agent[18]?.replace(/"/g, ""),
@@ -217,10 +218,10 @@ export default function Home() {
               value={categorySearch}
               onChange={handleCategorySearchChange}
             />
-            <div>
+            {/* <div>
               <input type="checkBox" />
               <label className="All">ALL</label>
-            </div>
+            </div> */}
 
             <div
               className="checkbox-group"
@@ -248,10 +249,10 @@ export default function Home() {
               value={industrySearch}
               onChange={handleIndustrySearchChange}
             />
-            <div>
+            {/* <div>
               <input type="checkbox" />
               <label className="All">ALL</label>
-            </div>
+            </div> */}
             <div
               className="checkbox-group"
               style={{ height: "220px", overflow: "auto", gap: "6px" }}
@@ -285,7 +286,7 @@ export default function Home() {
               >
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
-                <option value="popular">Popular</option>
+                {/* <option value="popular">Popular</option> */}
               </select>
             </div>
           </div>

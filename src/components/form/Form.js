@@ -78,7 +78,7 @@ export default function SubmitPage() {
       });
 
       const response = await axios.post(
-        "http://13.215.228.42:4001//api/agents_create", // Your existing API endpoint
+        "http://13.215.228.42:4001/api/agents_create", // Your existing API endpoint
         formBody,
         {
           headers: {
@@ -134,6 +134,7 @@ export default function SubmitPage() {
                 id="floatingInputGrid"
                 placeholder="Enter AI Agent Name"
                 onChange={handleChange}
+                required // This makes the field mandatory
               />
             </div>
 
@@ -150,6 +151,7 @@ export default function SubmitPage() {
                 name="created_by"
                 id="floatingInputGrid"
                 onChange={handleChange}
+                required // This makes the field mandatory
                 placeholder="Enter Creater name"
               />
             </div>
@@ -169,6 +171,7 @@ export default function SubmitPage() {
                 class="form-control"
                 name="website_url"
                 onChange={handleChange}
+                required // This makes the field mandatory
                 id="floatingInputGrid"
                 placeholder="Enter Website URL or github Url"
               />
@@ -206,6 +209,7 @@ export default function SubmitPage() {
                   value="Open Source"
                   checked={formData?.access === "Open Source"}
                   onChange={handleChange}
+                  required // This makes the field mandatory
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                   Open Source
@@ -254,6 +258,7 @@ export default function SubmitPage() {
                   value="Free"
                   checked={formData.pricing === "Free"}
                   onChange={handleChange}
+                  required // This makes the field mandatory
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault4">
                   Free
@@ -304,6 +309,7 @@ export default function SubmitPage() {
                   value="Personal Assistant"
                   checked={formData.category === "Personal Assistant"}
                   onChange={handleChange}
+                  required // This makes the field mandatory
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault7">
                   Personal Assistant
@@ -512,6 +518,7 @@ export default function SubmitPage() {
                   value="Fintech"
                   checked={formData.industry === "Fintech"}
                   onChange={handleChange}
+                  required // This makes the field mandatory
                 />
                 <label
                   className="form-check-label"
@@ -681,7 +688,7 @@ export default function SubmitPage() {
           </div>
         </div>
 
-        <div className="tagline">
+        {/* <div className="tagline">
           <p>
             <label className="hi">
               Tagline <span className="star">*</span>
@@ -696,7 +703,7 @@ export default function SubmitPage() {
             rows="3"
             onChange={handleChange}
           ></textarea>
-        </div>
+        </div> */}
 
         <div>
           <label className="hi">
@@ -711,6 +718,7 @@ export default function SubmitPage() {
             rows="7"
             cols="90"
             onChange={handleChange}
+            required // This makes the field mandatory
           ></textarea>
         </div>
 
@@ -768,6 +776,7 @@ export default function SubmitPage() {
               onChange={(e) =>
                 setFormData({ ...formData, logo: e.target.files[0] })
               }
+              required //This makes the field mandatory
             />
           </div>
           {/* <div className="ai-agent-input-group">
