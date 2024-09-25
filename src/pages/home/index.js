@@ -119,14 +119,18 @@ export default function Home() {
           queryParams.push(
             `accessory_model=${encodeURIComponent(accessoryModel)}`
           );
-        if (selectedCategories.length)
-          queryParams.push(
-            `category=${encodeURIComponent(selectedCategories.join(","))}`
-          );
-        if (selectedIndustries.length)
-          queryParams.push(
-            `industry=${encodeURIComponent(selectedIndustries.join(","))}`
-          );
+        if (selectedCategories.length) {
+          selectedCategories.forEach((category) => {
+            queryParams.push(`category=${encodeURIComponent(category)}`);
+          });
+        }
+
+        if (selectedIndustries.length) {
+          selectedIndustries.forEach((industry) => {
+            queryParams.push(`industry=${encodeURIComponent(industry)}`);
+          });
+        }
+
         if (sort) queryParams.push(`sort=${encodeURIComponent(sort)}`);
 
         const queryString = queryParams.length
@@ -157,7 +161,7 @@ export default function Home() {
           author: agent[14],
           visibility: agent[15],
           tags: agent[16],
-          logo:agent[18],
+          logo: agent[18],
 
           preview_image: agent[17]?.replace(/"/g, ""),
           demo_video: agent[18]?.replace(/"/g, ""),
