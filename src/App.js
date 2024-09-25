@@ -22,7 +22,7 @@ function App() {
           
         </Routes>
         {/* <SubmitPage/> */}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
