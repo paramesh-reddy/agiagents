@@ -17,7 +17,7 @@ export default function Footer() {
       }
 
       // Define the API endpoint
-      const apiEndpoint = "http://13.215.228.42:4001/api/subscribe"; // Replace with your API URL
+      const apiEndpoint = "http://13.215.228.42:4001/api/add_email"; // Replace with your API URL
 
       // Perform the API request
       try {
