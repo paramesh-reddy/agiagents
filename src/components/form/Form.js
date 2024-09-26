@@ -806,7 +806,7 @@ export default function SubmitPage() {
               type="email"
               class="form-control"
               id="Youtube"
-              placeholder="Enter a YouTube or Video URL."
+              placeholder="Enter a YouTube or Video Embed URL."
               name="demo_video"
               onChange={handleChange}
             />
