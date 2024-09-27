@@ -3,7 +3,7 @@ import "./Form.css";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import PrepLoader from "../prep-loader/loader";
-
+import Delete from "./Delete";
 export default function UpdatePage() {
   const [formData, setFormData] = useState({
     tagline: "",
@@ -109,9 +109,11 @@ export default function UpdatePage() {
     return id[4]; // Return the ID directly
   };
 
+
+  const agentId = getAgentIdFromURL();
+
   useEffect(() => {
     const fetchAgentDetails = async () => {
-      const agentId = getAgentIdFromURL();
       try {
         const response = await fetch(
           `http://13.215.228.42:4001//api/agents_detail/${agentId}`
@@ -709,7 +711,7 @@ export default function UpdatePage() {
         <label className="hi1">Key Features</label>
         <textarea
           id="tagline"
-          placeholder="Eneter 5 comma-seperated features of your AI Agent"
+          placeholder="Eneter  comma-seperated features of your AI Agent"
           name="key_features"
           rows="5"
           cols="90"
@@ -802,8 +804,11 @@ export default function UpdatePage() {
             onChange={handleChange}
           />
         </div>
+        
       </div>
-      <button
+    <div className="total-buttons">
+    <div>
+    <button
         className="Onclick"
         onClick={(e) => handleCreate(e)}
         disabled={isLoading} // Disable button while loading
@@ -811,8 +816,13 @@ export default function UpdatePage() {
         {isLoading ? "Submitting..." : "Submit AI Agent"}{" "}
         {/* Change button text */}
       </button>
+    </div>
+      <div  className="deletee"><Delete agentId={agentId}/></div>
 
-      {isLoading && (
+  
+    </div>
+    
+        {isLoading && (
         <div className="loader">
           <PrepLoader />
         </div> // Display loader when loading

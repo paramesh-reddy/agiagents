@@ -142,6 +142,7 @@ export default function Home() {
         );
         const data = await response.json();
 
+        
         const images = [img1, img6, img2, img8, img5, img6, img7, img8, img9];
         const updatedData = data.agents.map((agent) => ({
           id: agent[0],

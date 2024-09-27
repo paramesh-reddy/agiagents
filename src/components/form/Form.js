@@ -728,7 +728,7 @@ export default function SubmitPage() {
 
           <textarea
             id="tagline"
-            placeholder="Eneter 5 comma-seperated features of your AI Agent"
+            placeholder="Eneter  comma-seperated features of your AI Agent"
             name="key_features"
             rows="5"
             cols="90"

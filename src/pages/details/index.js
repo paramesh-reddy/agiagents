@@ -21,13 +21,26 @@ const DetailPage = () => {
     return id; // Return the ID directly
   };
 
+  // const getVideoIdFromURL = (url) => {
+  //   const id = url.split("/");
+  //   // Split the URL at the '?' and get the part after it
+  //   console.log(`https://www.youtube.com/embed/${id[3]}`);
+
+  //   return id; // Return the ID directly
+  // };
+
+  function getVideoIdFromURL(url) {
+    const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
   // Fetch agent details from the API
   useEffect(() => {
     const fetchAgentDetails = async () => {
       const agentId = getAgentIdFromURL();
       try {
         const response = await fetch(
-          `http://13.215.228.42:4001//api/agents_detail/${agentId}`
+          `http://13.215.228.42:4001/api/agents_detail/${agentId}`
         );
         const data = await response.json();
         setAgent(data?.agent);
@@ -37,6 +50,7 @@ const DetailPage = () => {
     };
 
     fetchAgentDetails();
+    // console.log(agent);
   }, []);
 
   if (!agent) {
@@ -199,7 +213,9 @@ const DetailPage = () => {
             height="500"
             name="demo_video"
             src={
-              agent?.demo_video || "https://www.youtube.com/embed/dQw4w9WgXcQ"
+              `https://www.youtube.com/embed/${getVideoIdFromURL(
+                agent?.demo_video
+              )} ` || "https://www.youtube.com/embed/dQw4w9WgXcQ"
             } // Replace with actual video link
             title="Phonely AI Demo Video"
             frameBorder="0"

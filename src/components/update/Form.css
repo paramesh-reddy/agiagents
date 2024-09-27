@@ -47,10 +47,17 @@
     background-color: aquamarine;
     border-radius: 10px;
     padding: 10px;
-    margin-top: 20px;
+    margin-bottom:px ;
     border: none; /* Replaces border-style: hidden; for better clarity */
-}
+width:380px;
 
+
+}
+.total-buttons{
+    display: flex;
+    
+    
+}
 
 textarea {
     width: 100% !important;
