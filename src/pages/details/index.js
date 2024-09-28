@@ -215,7 +215,7 @@ const DetailPage = () => {
             src={
               `https://www.youtube.com/embed/${getVideoIdFromURL(
                 agent?.demo_video
-              )} ` || "https://www.youtube.com/embed/dQw4w9WgXcQ"
+             || "https://youtu.be/cJsZwyh7O5M"  )} `
             } // Replace with actual video link
             title="Phonely AI Demo Video"
             frameBorder="0"

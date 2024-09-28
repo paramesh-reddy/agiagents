@@ -688,12 +688,12 @@ export default function SubmitPage() {
           </div>
         </div>
 
-        {/* <div className="tagline">
+        <div className="tagline">
           <p>
             <label className="hi">
               Tagline <span className="star">*</span>
             </label>
-            <div className="wordCount1">{formData?.tagline?.length}/100</div>
+            <div className="wordCount1">{formData?.tagline?.length}/50</div>
           </p>
 
           <textarea
@@ -703,7 +703,7 @@ export default function SubmitPage() {
             rows="3"
             onChange={handleChange}
           ></textarea>
-        </div> */}
+        </div>
 
         <div>
           <label className="hi">

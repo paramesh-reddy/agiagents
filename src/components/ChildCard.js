@@ -29,8 +29,9 @@ const ChildCard = ({ agent, navigate, logo }) => {
     >
       <img src={agent?.logo} alt={""} className="agent-image" />
       <div className="agent-info">
-        <h3>{agent.name}</h3>
-        <p>{agent.description}</p>
+        <h3 className="name">{agent.name}</h3>
+
+        <p>{agent.tagline}</p>
         {/* <div className="tags">
                       <span className="tag free">{agent?.pricing_model}</span>
                       <span className="tag paid">{agent?.category}</span>
@@ -47,7 +48,7 @@ const ChildCard = ({ agent, navigate, logo }) => {
           <span
             className="hello"
             onClick={handleLike}
-            style={{ cursor: "pointer", marginLeft: "7px",marginLeft:'17px' }}
+            style={{ cursor: "pointer", marginLeft: "7px", marginLeft: "17px" }}
           >
             <FaThumbsUp /> {likes}
           </span>

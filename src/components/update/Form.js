@@ -157,7 +157,7 @@ export default function UpdatePage() {
             <h1>Update AI agent </h1>
             <p>
               {" "}
-              Free submition Reivew and approval with 24 hours.
+              Free submition Reivew and approval with in 24 hours.
               <br />
               Gain visibility,attract new users,and reciew valuable feedback by
               showcasing your AI Agent.
@@ -170,6 +170,7 @@ export default function UpdatePage() {
             <label className="hi" for="Ai Agent">
               AI Agent Name <span className="star">*</span>
             </label>
+            <div className="wordCount">{formData?.name?.length}/35</div>
 
             <input
               className="container"
@@ -187,7 +188,7 @@ export default function UpdatePage() {
             <label className="hi" for="Ai Agent">
               Created By <span className="star">*</span>
             </label>
-
+            <div className="wordCount">{formData?.created_by?.length}/50</div>
             <input
               className="container"
               type="text"
@@ -206,7 +207,9 @@ export default function UpdatePage() {
             <label className="hi" for="Ai Agent">
               Website URL <span className="star">*</span>
             </label>
-
+            <div className="wordCount">
+                {formData?.website_url?.length}/100
+              </div>
             <input
               className="container"
               type="text"
@@ -223,6 +226,8 @@ export default function UpdatePage() {
             <label className="hi" for="Ai Agent">
               Contact Email
             </label>
+            <div className="wordCount">{formData?.email?.length}/50</div>
+
             <input
               className="container"
               type="email"
@@ -673,11 +678,12 @@ export default function UpdatePage() {
         </div>
       </div>
 
-      {/* <div className="tagline">
+      <div className="tagline">
         <p>
           <label className="hi">
             Tagline <span className="star">*</span>
           </label>
+          <div className="wordCount1">{formData?.tagline?.length}/50</div>
         </p>
         <textarea
           id="tagline"
@@ -686,13 +692,19 @@ export default function UpdatePage() {
           onChange={handleChange}
           name="tagline"
           value={formData?.tagline}
-        ></textarea>
-      </div> */}
+          
+        >
+             
+        </textarea>
+     
+      </div>
 
       <div>
         <label className="hi1">
           Description <span className="star">*</span>
         </label>
+        
+        <div className="wordCount1">{formData?.description?.length}/750</div>
         <textarea
           id="discription"
           placeholder="Briefly describe your AI Agent, the description is used on your AI Agent page ."
@@ -703,7 +715,6 @@ export default function UpdatePage() {
           value={formData?.description}
           required // This makes the field mandatory
         >
-          {" "}
         </textarea>
       </div>
 
@@ -722,7 +733,7 @@ export default function UpdatePage() {
 
       {/* <div>
         <label className="hi">Use Cases</label>
-        <textarea id="tagline" placeholder="Enter 5 comma-seperated use cases for your AI Agent " rows="4" cols="90" name="use_cases" onChange={handleChange}
+        <textarea id="tagline" placeholder="Enter  comma-seperated use cases for your AI Agent " rows="4" cols="90" name="use_cases" onChange={handleChange}
         >
         </textarea>
       </div> */}
