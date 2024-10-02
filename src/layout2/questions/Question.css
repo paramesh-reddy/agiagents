@@ -1,0 +1,87 @@
+/* Base styles for accordion items */
+.accordion-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2rem;
+  position: relative;
+}
+
+/* Icon styles for + and - */
+.accordion-icon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: auto;
+  padding-left: 1rem;
+}
+
+/* Optional: Button appearance when collapsed and expanded */
+.accordion-button.collapsed {
+  background-color: #f8f9fa00;
+  color: #000000;
+}
+
+.accordion-button {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Accordion body styling */
+.accordion-body {
+  padding: 1.5rem;
+  background-color: white;
+}
+/* 
+.innercontainer7 {
+  box-shadow: 3px 2px 10px rgba(143, 125, 125, 0.949);
+  padding: 60px;
+} */
+.accordion-item {
+  border: px solid #ddd;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(30, 27, 229, 0.351);
+  border-color: 2px solid black;
+}
+.accordion-header {
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+.FAQ {
+  background: linear-gradient(to right, rgb(225, 46, 133), rgb(63, 81, 239));
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-left: 450px;
+  font-weight: 550;
+  font-size: 55px;
+  margin-top: 40px;
+}
+.footers h1 {
+  background: linear-gradient(to right, rgb(225, 46, 133), rgb(63, 81, 239));
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 600;
+  font-size: 55px;
+  margin-top: 170px;
+  margin-left: 380px;
+}
+.footers p {
+  margin-left: 100px;
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 500;
+  font-size: large;
+}
+.footers h4 {
+  margin-top: 70px;
+  text-align: center;
+  padding: 50px;
+  font-size: large;
+  font-weight: 450;
+  background-color: #f4f4f48e;
+  font-size: medium;
+}
+.buttonss {
+  margin-top: 70px;
+  box-shadow: 0 4px 8px rgba(225, 225, 232, 0.814);
+}

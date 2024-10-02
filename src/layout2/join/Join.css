@@ -1,0 +1,38 @@
+.inner {
+  background-color: rgba(246, 252, 253, 0.236);
+  height: 100vh;
+  padding: 50px;
+}
+
+.join {
+  display: flex;
+
+  align-items: center;
+  margin-left: 300px;
+  gap: 30px;
+  margin-top: 50px;
+  width: 750px;
+}
+.challenge {
+  background: linear-gradient(to right, rgb(57, 57, 241), rgb(236, 31, 31));
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 50px;
+  font-size: 60px;
+  font-weight: 600;
+  margin-top: 10px;
+
+  margin-left: 300px;
+}
+.Project1,.project2 {
+  margin-top: 37px;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px rgba(75, 150, 226, 0.378);
+  background: linear-gradient(to right, rgb(57, 57, 241), rgb(236, 31, 31));
+ color: white;
+}
+.project2 {
+  background: white;
+  color: black;
+}

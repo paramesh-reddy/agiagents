@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: -140px;
+  margin-left: 17px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 60px;
+  margin-top: 29px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #080808;
+  font-size: large;
+  font-weight: 400;
+}
+
+.cta-buttons,
+.cta-buttons1 {
+  display: flex;
+  gap: 20px;
+}
+
+.submit-btn,
+.submit-btn1,
+.register-btn,
+.register-btn2,
+.submit-btn2,
+.register-btn {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: 0.3s ease;
+}
+
+.submit-btn,
+.submit-btn1,
+.submit-btn2 {
+  background-color: white;
+  border: 0.1px solid #ddd;
+  color: black;
+  font-weight: 500;
+  box-shadow: 3px 9px 10px rgba(75, 150, 226, 0.378);
+}
+
+.register-btn,
+.register-btn2,
+.register-btn1 {
+  background: linear-gradient(to right, blue, red);
+  color: white;
+  border: none;
+}
+
+.submit-btn:hover {
+  background-color: #d2c4c4;
+}
+
+.register-btn:hover {
+  background-color: #d87497;
+}
+
+/* Responsive Styles */
+/* @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  
+    .cta-buttons {
+      flex-direction: column;
+    }
+  } */
+.register-btn1,
+.register-btn2 {
+  margin-left: 200px;
+  border-radius: 20px;
+  padding: 15px;
+  margin-left: 120px;
+}
+.submit-btn1,
+.submit-btn2 {
+  margin-left: 260px;
+  margin-left: 300px;
+}
+
+.register-btn2 {
+  margin-left: 130px;
+}
+.submit-btn2 {
+  margin-left: 500px;
+  padding: 15px;
+}

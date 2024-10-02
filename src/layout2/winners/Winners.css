@@ -1,0 +1,44 @@
+.container2 {
+  background-color: rgba(224, 211, 211, 0.066);
+  margin-top: 300px;
+  padding: 70px;
+}
+
+.header1 p {
+  font-size: 40px;
+  font-weight: 420;
+  margin-left: 420px;
+  margin-top: 30px;
+  margin-bottom: -20px;
+}
+.header1 h1 {
+  font-size: 60px;
+  font-weight: 600;
+  margin-left: 280px;
+  margin-top: 100px;
+  margin-bottom: -180px;
+}
+.span {
+  width: 800px;
+  gap: 10px;
+  margin-left: 260px;
+}
+.step1 {
+  background-color: rgba(248, 245, 245, 0.089);
+  padding: 20px;
+  width: 300px;
+  height: 270px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(143, 125, 125, 0.949);
+}
+.step1 p {
+  font-weight: 700;
+  font-size: 50px;
+  margin-top: 50px;
+}
+.step1 h2 {
+  background-color: white;
+  border-radius: 10px;
+  padding: 7px;
+}

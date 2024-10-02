@@ -1,0 +1,113 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100vh;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+  height: 100vh;
+  margin-top: 70px;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: black;
+  font-size: 40px;
+  font-weight: 700;
+  margin-left: 480px;
+  margin-top: 60px;
+}
+.cta-buttons1{
+  margin-top: 20px;
+}
+
+.header p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 20px;
+  margin-left: 480px;
+}
+
+/* Step Section */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: -10px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.step {
+   background-color: rgba(247, 247, 248, 0.898);
+  padding: 20px;
+  width: 300px;
+  height: 270px;
+  margin: 20px;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 40px rgba(148, 106, 237, 0.159);
+  transition-property: background, border-radius, opacity;
+
+}
+
+.step h2 {
+  font-size: 1.5rem;
+  color: black;
+  margin-left: -15px;
+  background-color: white;
+  width: 40px;
+  height: 45px;
+  margin-bottom: 35px;
+
+  border-radius: 10px;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 35px;
+  padding: 10px;
+}
+
+.step p {
+  font-size: 1rem;
+  color: #666;
+}
+.pics {
+  width: 30%;
+  margin: 1px;
+  gap: 20px;
+  padding:30px;
+
+}
+.colored {
+  color: blue; /* Change this to whatever color you prefer */
+}
+.partners {
+  margin-top: 250px;
+}
+
+/* Responsive Styles
+@media (max-width: 768px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+} */

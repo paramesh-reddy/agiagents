@@ -1,47 +1,38 @@
 import React, { useState } from "react";
 import "./Footer.css";
+import axios from 'axios'; // Import Axios
 // import React, { useState } from 'react';
 
 export default function Footer() {
+ 
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   const handleSubscribe = async () => {
-    if (!email) {
-      alert("Please enter an email address");
-      return;
-    }
-
-    // Define the API endpoint
-    const apiEndpoint = "http://13.215.228.42:4001/api/add_email"; // Replace with your API URL
-
-    // Perform the API request
     try {
-      const response = await fetch(apiEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }), // Sending the email in the body
-      });
+      // Make the POST request using axios
+      const response = await axios.post(
+        `http://13.215.228.42:4001/api/add_email`,
+        { email }
+      );
 
-      if (response.ok) {
-        // Success handling
-        alert("Subscribed successfully!");
-        setEmail(""); // Clear the input field
+      // Check if the request was successful
+      if (response.status === 200) {
+        setMessage("Subscription successful!");
+     alert('succefully ')
       } else {
-        // Error handling
-        alert("Failed to subscribe. Please try again.");
+        setMessage("Failed to subscribe. Please try again.");
+        
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred. Please try again.");
+      setMessage("An error occurred. Please try again later.");
     }
   };
-
   return (
     <div className="footer">
       <div>
