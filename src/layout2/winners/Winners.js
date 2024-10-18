@@ -2,7 +2,7 @@ import React from "react";
 import "./Winners.css";
 const Winners = () => {
   return (
-    <div className="container2" name='prizes'>
+    <div className="container2" name="prizes">
       <header className="header1">
         <p>What Do Winners Get?</p>
         <h1>Top 3 most voted Projects.</h1>

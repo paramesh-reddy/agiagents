@@ -8,9 +8,13 @@ import Judge from "../../layout2/judging/Judge";
 import img1 from "../../Assets/hack1.jpg";
 import img2 from "../../Assets/hack2.png";
 import img3 from "../../Assets/hack3.png";
-import backgroundImage from '../../Assets/buildathon2.webp'
+import backgroundImage from "../../Assets/buildathon2.webp";
+import { Link } from "react-scroll";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
+  const Navigate= useNavigate()
   return (
     <div>
       <Navbar />
@@ -27,8 +31,8 @@ const MainPage = () => {
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "100% 100%",
           backgroundPosition: "center",
-        backgroundPositionX:'50%',
-        alignItems:'center',
+          backgroundPositionX: "50%",
+          alignItems: "center",
         }}
       >
         <div className="steps">
@@ -61,9 +65,15 @@ const MainPage = () => {
             <img className="pics" src={img3} alt="img" />
           </div>
           <div className="cta-buttons1">
-            <a href="#submit" className="submit-btn1">
-              Submit your project <i className="fas fa-arrow-right"></i>
-            </a>
+          <Link
+          to="#"
+          onClick={() => Navigate("/form")}
+          smooth={true}
+          duration={500}
+          className="submit-btn2"
+        >
+          Submit your project <i className="fas fa-arrow-right"></i>
+        </Link>
             <a href="#register" className="register-btn1">
               Register on GogleDoc <i className="fas fa-arrow-right"></i>
             </a>

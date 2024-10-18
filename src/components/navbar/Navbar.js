@@ -11,7 +11,7 @@ export default function Navbar() {
       <div className="navbar-container">
         <h2 className="navbar-heading">AI Agents Hub </h2>
         <div className="navbar-menu">
-         <Link to="#"  onClick={() =>navigate('/main')}smooth={true} duration={500}>Hakerthon</Link> 
+         {/* <Link to="#"  onClick={() =>navigate('/main2')}smooth={true} duration={500}>Hakerthon</Link>  */}
           <Link to="#" onClick={()=>navigate('/submit')} smooth={true} duration={500}>Submit AI Agent</Link>      
         </div>
       </div>

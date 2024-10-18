@@ -232,7 +232,7 @@ export default function Home() {
               style={{ height: "200px", overflow: "auto" }}
             >
               {filteredCategories.map((category, index) => (
-                <label key={index} style={{ display: "flex", gap: "6px" }}>
+                <label key={index} style={{ display: "flex", gap: "7px" }}>
                   <input
                     type="checkBox"
                     checked={selectedCategories.includes(category)}
@@ -254,15 +254,15 @@ export default function Home() {
               onChange={handleIndustrySearchChange}
             />
             {/* <div>
-              <input type="checkbox" />
+              <input type="checkbox"/>
               <label className="All">ALL</label>
             </div> */}
             <div
               className="checkbox-group"
-              style={{ height: "220px", overflow: "auto", gap: "6px" }}
+              style={{ height: "200px", overflow: "auto" }}
             >
               {filteredIndustries.map((industry, index) => (
-                <label key={index}>
+                <label key={index} style={{ display: "flex", gap: "7px" }}>
                   <input
                     type="checkBox"
                     checked={selectedIndustries.includes(industry)}

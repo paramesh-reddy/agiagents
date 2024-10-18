@@ -1,6 +1,10 @@
 import React from "react";
 import "./Question.css";
+import { Link } from "react-scroll";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Question = () => {
+  const Navigate= useNavigate()
   return (
     <div>
       <h1 className="FAQ">FAQ's and key insights</h1>
@@ -16,7 +20,7 @@ const Question = () => {
           }}
         >
           <div className="huhu">
-            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button
@@ -272,9 +276,15 @@ const Question = () => {
           revolution.
         </p>
         <div className="buttonss">
-          <a href="#submit" className="submit-btn2">
-            Submit your project <i className="fas fa-arrow-right"></i>
-          </a>
+        <Link
+          to="#"
+          onClick={() => Navigate("/form")}
+          smooth={true}
+          duration={500}
+          className="submit-btn2"
+        >
+          Submit your project <i className="fas fa-arrow-right"></i>
+        </Link>
           <a href="#register" className="register-btn2">
             Register on GogleDoc <i className="fas fa-arrow-right"></i>
           </a>
