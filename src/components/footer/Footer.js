@@ -4,7 +4,7 @@ import axios from "axios"; // Import Axios
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -29,14 +29,14 @@ export default function Footer() {
 
       // Check if the request was successful
       if (response.status === 200) {
-        setMessage("Subscription successful!");
+        alert("Subscription successful!");
         alert("Successfully subscribed");
       } else {
-        setMessage("Failed to subscribe. Please try again.");
+        alert("Failed to subscribe. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage("An error occurred. Please try again later.");
+      alert("An error occurred. Please try again later.");
     }
   };
 
@@ -63,7 +63,7 @@ export default function Footer() {
           </span>
         </div>
       </div>
-      {message && <p>{message}</p>}
+      {/* {message && <p>{message}</p>} */}
     </div>
   );
 }
