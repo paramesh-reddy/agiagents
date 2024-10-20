@@ -28,9 +28,8 @@ export default function Footer() {
       );
 
       // Check if the request was successful
-      if (response.status === 200) {
+      if (response.status === 201) {
         alert("Subscription successful!");
-        alert("Successfully subscribed");
       } else {
         alert("Failed to subscribe. Please try again.");
       }
